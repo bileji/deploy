@@ -1,3 +1,5 @@
 *
 /mysql/
+/nginx/
+/php7/
 !.gitignore

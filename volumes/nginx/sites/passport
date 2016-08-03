@@ -1,0 +1,17 @@
+server {
+    listen 8000;
+    server_name api.runningdoctor.cn 121.40.176.25 localhost;
+ 
+    root   /var/www/rd-passport/public;
+ 
+    access_log /data/logs/nginx/rd-passport.access.log main;
+    error_log  /data/logs/nginx/rd-passport.error.log;
+
+    autoindex on;
+    autoindex_exact_size off;
+    autoindex_localtime on;
+
+    index index.html index.php;
+
+    include includes/laravel;
+}
