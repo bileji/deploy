@@ -28,7 +28,7 @@ EOF
         fi
     fi
     
-    mysql -u root -p$GENERATED_PASSWORD < $tfile
+    mysql -u root -p$GENERATED_PASSWORD --connect-expired-password < $tfile
 fi
 
-exec service mysqld restart
+exec service mysqld start
