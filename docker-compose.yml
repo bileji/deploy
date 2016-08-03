@@ -1,0 +1,22 @@
+proxy:
+    build: ./images/proxy
+    container_name: proxy
+    ports:
+        - "1080:1080"
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
+php7:
+    build: ./images/php7
+    container_name: php7
+    links:
+        - proxy
+    ports:
+        - "9001:9000"
+    #volumes: 
+        #- ./works:/var/www
+        #- ./volumes/php/bin:/usr/local/bin
+        #- ./volumes/composer:/root/.composer
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
