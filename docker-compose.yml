@@ -28,4 +28,4 @@ mysql:
     environment:
         TZ: Asia/Shanghai
         MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
-    restart: always
+    #restart: always

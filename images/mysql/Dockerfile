@@ -39,5 +39,5 @@ RUN chmod +x /usr/local/bin/run.sh
 # 
 EXPOSE 3306
 # 
-CMD ["/usr/local/bin/run.sh"]}
+CMD ["/usr/local/bin/run.sh"]
 #CMD ["/sbin/init"]

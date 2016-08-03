@@ -33,6 +33,6 @@ if [[ $MYSQL_DATABASE != "" ]]; then
 fi
 
 mysql -u root -p$GENERATED_PASSWORD < $tfile
-rm -f $tfile
+#rm -f $tfile
 
-exec /usr/sbin/mysqld
+exec service mysqld start
