@@ -6,26 +6,26 @@
 #     environment:
 #         TZ: Asia/Shanghai
 #     restart: always
-# php7:
-#     build: ./images/php7
-#     container_name: php7
-#     ports:
-#         - "9001:9000"
-#     volumes: 
-#         - ./works:/data/www
-#         - ./volumes/php/logs:/data/logs
-#     environment:
-#         TZ: Asia/Shanghai
-#     restart: always
-mysql:
-    build: ./images/mysql
-    container_name: mysql
+php7:
+    build: ./images/php7
+    container_name: php7
     ports:
-        - "33061:3306"
-    volumes:
+        - "9001:9000"
+    volumes: 
         - ./works:/data/www
-        - ./volumes/mysql/logs:/data/logs
+        - ./volumes/php/logs:/data/logs
     environment:
         TZ: Asia/Shanghai
-        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
-    #restart: always
+    restart: always
+#mysql:
+#    build: ./images/mysql
+#    container_name: mysql
+#    ports:
+#        - "33061:3306"
+#    volumes:
+#        - ./volumes/logs/mysql:/var/log/mysql
+#        - ./volumes/db/mysql:/var/lib/mysql
+#    environment:
+#        TZ: Asia/Shanghai
+#        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+#    restart: always
