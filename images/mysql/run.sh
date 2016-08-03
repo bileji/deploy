@@ -2,6 +2,11 @@
 set -e
 
 GENERATED_PASSWORD=`cat /var/log/mysqld.log |grep 'generated for root@localhost:'|awk -F 'generated for root@localhost: ' '{print $2}'''`
+cat <<EOF >> /etc/my.cnf
+[mysql]
+user=root
+password=$GENERATED_PASSWORD
+EOF
 
 chown -R mysql:mysql /var/lib/mysql
 
@@ -28,7 +33,7 @@ EOF
         fi
     fi
     
-    mysql -u root -p$GENERATED_PASSWORD --connect-expired-password < $tfile
+    mysql --connect-expired-password < $tfile
 fi
 
 exec service mysqld start
