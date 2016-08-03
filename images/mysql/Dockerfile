@@ -2,7 +2,7 @@ FROM centos:6.6
 
 MAINTAINER shuchao <shuc324@gmail.com>
 
-update
+#update
 # RUN yum -y update
 
 #php7
@@ -11,7 +11,7 @@ RUN mkdir -p /data/logs && chmod 777 -R /data
 RUN {\
     echo "[mysql57-community]"; \
     echo "name=MySQL 5.7 Community Server"; \
-    echo "baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/6/$basearch/"; \
+    echo "baseurl=http://repo.mysql.com/yum/mysql-5.7-community/el/6/\$basearch/"; \
     echo "enabled=1"; \
     echo "gpgcheck=1"; \
     echo "gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-mysql"; \
