@@ -8,6 +8,10 @@ MAINTAINER shuchao <shuc324@gmail.com>
 #php7
 RUN mkdir -p /data/logs && chmod 777 -R /data
 
+RUN yum install -y wget
+RUN wget http://repo.mysql.com/mysql57-community-release-el6-8.noarch.rpm
+RUN yum localinstall -y mysql57-community-release-el6-8.noarch.rpm
+
 RUN {\
     echo "[mysql57-community]"; \
     echo "name=MySQL 5.7 Community Server"; \
