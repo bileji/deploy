@@ -27,4 +27,5 @@ mysql:
         - ./volumes/mysql/logs:/data/logs
     environment:
         TZ: Asia/Shanghai
+        MYSQL_ROOT_PASSWORD: 123456
     restart: always

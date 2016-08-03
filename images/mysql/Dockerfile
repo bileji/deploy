@@ -28,12 +28,12 @@ RUN yum install -y mysql-community-server
 #     echo 'log_error=/dev/stderr'; \
 # } > /etc/mysql/conf.d/my.cnf
 # 
-# ADD run.sh /usr/local/bin/run.sh
-# RUN chmod +x /usr/local/bin/run.sh
+ADD run.sh /usr/local/bin/run.sh
+RUN chmod +x /usr/local/bin/run.sh
 # 
 # VOLUME /var/lib/mysql
 # 
-# EXPOSE 3306
+EXPOSE 3306
 # 
-# CMD ["/usr/local/bin/run.sh"]}
-CMD ["/sbin/init"]
+CMD ["/usr/local/bin/run.sh"]}
+#CMD ["/sbin/init"]
