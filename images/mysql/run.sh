@@ -1,8 +1,9 @@
 #!/bin/bash
 set -e
 
+GENERATED_PASSWORD=`cat /var/log/mysqld.log |grep 'generated for root@localhost:'|awk -F 'generated for root@localhost: ' '{print $2}'''`
+
 chown -R mysql:mysql /var/lib/mysql
-mysql_install_db --user mysql > /dev/null
 
 MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:-""}
 MYSQL_DATABASE=${MYSQL_DATABASE:-""}
@@ -29,7 +30,7 @@ if [[ $MYSQL_DATABASE != "" ]]; then
     fi
 fi
 
-/usr/sbin/mysqld --bootstrap --verbose=0 < $tfile
+mysql -u root -p$GENERATED_PASSWORD < $tfile
 rm -f $tfile
 
 exec /usr/sbin/mysqld
