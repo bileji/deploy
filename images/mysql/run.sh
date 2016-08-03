@@ -16,11 +16,13 @@ if [[ ! -f "$tfile" ]]; then
 fi
 
 cat << EOF > $tfile
+ALTER USER 'root'@'localhost' IDENTIFIED BY "$MYSQL_ROOT_PASSWORD";
 USE mysql;
-FLUSH PRIVILEGES;
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' WITH GRANT OPTION;
-UPDATE user SET password=PASSWORD("$MYSQL_ROOT_PASSWORD") WHERE user='root';
+FLUSH PRIVILEGES;
 EOF
+
+#UPDATE user SET host="%" WHERE user='root';
 
 if [[ $MYSQL_DATABASE != "" ]]; then
     echo "CREATE DATABASE IF NOT EXISTS \`$MYSQL_DATABASE\` CHARACTER SET utf8 COLLATE utf8_general_ci;" >> $tfile
