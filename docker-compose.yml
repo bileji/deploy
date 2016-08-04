@@ -68,14 +68,14 @@ mysql:
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-# memcached:
-#     build: ./images/memcached
-#     container_name: memcached 
-#     ports:
-#         - "11211:11211"
-#     environment:
-#         TZ: Asia/Shanghai
-#     restart: always
+memcached:
+    build: ./images/memcached
+    container_name: memcached 
+    ports:
+        - "11211:11211"
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
 #mongodb:
 #    build: ./images/mongodb
 #    container_name: mongodb

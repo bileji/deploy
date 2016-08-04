@@ -7,4 +7,4 @@ RUN yum install -y memcached
 
 EXPOSE 11211
 
-CMD ["memcached -u memcached"]
+CMD ["memcached", "-u", "daemon"]
