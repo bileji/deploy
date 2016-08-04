@@ -1,21 +1,58 @@
-# proxy:
-#     build: ./images/proxy
-#     container_name: proxy
-#     ports:
-#         - "1080:1080"
-#     environment:
-#         TZ: Asia/Shanghai
-#     restart: always
+#proxy:
+#    build: ./images/proxy
+#    container_name: proxy
+#    ports:
+#        - "1080:1080"
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
+nginx:
+    build: ./images/nginx
+    container_name: nginx 
+    links:
+        - php7
+        - mysql
+        - redis
+    ports:
+        - "801:80"
+        - "4431:443"
+    volumes: 
+        - ./works:/data/www
+        - ./volumes/logs/nginx:/var/log/nginx
+        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
+        - ./volumes/nginx/includes:/etc/nginx/includes
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
 php7:
     build: ./images/php7
     container_name: php7
     ports:
         - "9001:9000"
     volumes: 
+        - ./volumes/logs/php7/:/data/logs
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
+mysql:
+    build: ./images/mysql
+    container_name: mysql
+    ports:
+        - "33061:3306"
+    volumes:
+        - ./volumes/logs/mysql:/var/log/mysql
+        - ./volumes/db/mysql:/var/lib/mysql
+    environment:
+        TZ: Asia/Shanghai
+        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+    restart: always
+redis:
+    build: ./images/redis
+    container_name: redis 
+    ports:
+        - "63791:6379"
+    volumes: 
         - ./works:/data/www
-        - ./volumes/php/logs:/data/logs
-        #- ./volumes/php/bin:/usr/bin
-        #- ./volumes/composer:/root/.composer
     environment:
         TZ: Asia/Shanghai
     restart: always
