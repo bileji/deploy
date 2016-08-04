@@ -1,14 +1,3 @@
-location /runningdoctor/ {
-	rewrite ^/runningdoctor/(.*)$ /rd-server/app/webroot/$1;
-	if (-f $request_filename) {
-		break;
-	}
-	if (!-f $request_filename) {
-		rewrite ^/rd-server/app/webroot/(.*)$ /rd-server/app/webroot/index.php?url=$1 last;
-		break;
-	}
-}
-
 location /groups/ {
 	rewrite ^/groups/(.*)$ /rd-server/app/webroot/$1;
 	if (-f $request_filename) {
@@ -21,24 +10,8 @@ location /groups/ {
 }
 
 location ~ .*\.php$ {
-	fastcgi_pass    php7:9000;
+	fastcgi_pass    php:9000;
 	fastcgi_index   index.php;
 	fastcgi_param   SCRIPT_FILENAME $document_root$fastcgi_script_name;
 	include         fastcgi_params;
-}
-
-#location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
-#       #access_log       off;
-#       log_not_found     off;
-#       expires           5d;
-#}
-
-location ~ /\. {
-	access_log off;
-	log_not_found off;
-	deny all;
-}
-
-location ~ \.ht {
-	deny all;
 }

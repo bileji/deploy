@@ -6,46 +6,46 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-#nginx:
-#    build: ./images/nginx
-#    container_name: nginx 
-#    links:
-#        - php7
-#        - mysql
-#        - redis
-#    ports:
-#        - "80:80"
-#        - "443:443"
-#    volumes: 
-#        - ./works:/data/www
-#        - ./volumes/logs/nginx:/var/log/nginx
-#        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
-#        - ./volumes/nginx/includes:/etc/nginx/includes
-#    environment:
-#        TZ: Asia/Shanghai
-#    restart: always
+nginx:
+    build: ./images/nginx
+    container_name: nginx 
+    links:
+        - php
+    ports:
+        - "80:80"
+        - "443:443"
+    volumes: 
+        - ./works:/data/www
+        - ./volumes/logs/nginx:/var/log/nginx
+        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
+        - ./volumes/nginx/includes:/etc/nginx/includes
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
 #php:
 #    build: ./images/php7
 #    container_name: php
 #    ports:
 #        - "9000:9000"
 #    volumes: 
+#        - ./works:/data/www
 #        - ./volumes/logs/php7/php:/data/logs/php
 #        - ./volumes/logs/php7/php-fpm:/data/logs/php-fpm
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-#php:
-#    build: ./images/php5
-#    container_name: php
-#    ports:
-#        - "9000:9000"
-#    volumes: 
-#        - ./volumes/logs/php5/php:/data/logs/php
-#        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
-#    environment:
-#        TZ: Asia/Shanghai
-#    restart: always
+php:
+    build: ./images/php5
+    container_name: php
+    ports:
+        - "9000:9000"
+    volumes: 
+        - ./works:/data/www
+        - ./volumes/logs/php5/php:/data/logs/php
+        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
 mysql:
     build: ./images/mysql
     container_name: mysql

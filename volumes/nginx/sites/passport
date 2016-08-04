@@ -4,8 +4,8 @@ server {
  
     root   /var/www/rd-passport/public;
  
-    access_log /data/logs/nginx/rd-passport.access.log main;
-    error_log  /data/logs/nginx/rd-passport.error.log;
+    #access_log /data/logs/nginx/rd-passport.access.log main;
+    #error_log  /data/logs/nginx/rd-passport.error.log;
 
     autoindex on;
     autoindex_exact_size off;
