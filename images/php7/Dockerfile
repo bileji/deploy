@@ -37,6 +37,10 @@ ADD ./ext/*.so /usr/lib64/php/modules/
 # RUN groupadd www-data && useradd -g www-data www-data
 # RUN mkdir /data/www && chmod 777 -R /data/www && chown -R www-data:www-data /data/www
 
+# cron php scripts
+RUN yum install -y vixie-cron
+RUN chkconfig --list crond
+
 VOLUME /data/logs
 
 EXPOSE 9000

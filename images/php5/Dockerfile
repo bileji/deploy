@@ -29,6 +29,10 @@ RUN sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATE
 ADD ./ext/*.ini /etc/php.d/
 ADD ./ext/*.so /usr/lib64/php/modules/
 
+# cron php scripts
+RUN yum install -y vixie-cron
+RUN chkconfig --list crond
+
 EXPOSE 9000
 
 #CMD ["/sbin/init"]
