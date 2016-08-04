@@ -15,4 +15,3 @@ RUN sed -Ei '/include \/etc\/nginx\/conf\.d\/\*\.conf/ a\    include\ \/etc\/ngi
 EXPOSE 80 443 8000
 
 CMD ["nginx"]
-#CMD ["/sbin/init"]
