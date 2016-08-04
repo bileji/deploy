@@ -6,53 +6,73 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-nginx:
-    build: ./images/nginx
-    container_name: nginx 
-    links:
-        - php7
-        - mysql
-        - redis
+#nginx:
+#    build: ./images/nginx
+#    container_name: nginx 
+#    links:
+#        - php7
+#        - mysql
+#        - redis
+#    ports:
+#        - "80:80"
+#        - "443:443"
+#    volumes: 
+#        - ./works:/data/www
+#        - ./volumes/logs/nginx:/var/log/nginx
+#        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
+#        - ./volumes/nginx/includes:/etc/nginx/includes
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
+#php7:
+#    build: ./images/php7
+#    container_name: php7
+#    ports:
+#        - "9000:9000"
+#    volumes: 
+#        - ./volumes/logs/php7/php:/data/logs/php
+#        - ./volumes/logs/php7/php-fpm:/data/logs/php-fpm
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
+php5:
+    build: ./images/php5
+    container_name: php5
     ports:
-        - "801:80"
-        - "4431:443"
+        - "9000:9000"
     volumes: 
-        - ./works:/data/www
-        - ./volumes/logs/nginx:/var/log/nginx
-        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
-        - ./volumes/nginx/includes:/etc/nginx/includes
+        - ./volumes/logs/php5/php:/data/logs/php
+        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
     environment:
         TZ: Asia/Shanghai
     restart: always
-php7:
-    build: ./images/php7
-    container_name: php7
-    ports:
-        - "9001:9000"
-    volumes: 
-        - ./volumes/logs/php7/:/data/logs
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
-mysql:
-    build: ./images/mysql
-    container_name: mysql
-    ports:
-        - "33061:3306"
-    volumes:
-        - ./volumes/logs/mysql:/var/log/mysql
-        - ./volumes/db/mysql:/var/lib/mysql
-    environment:
-        TZ: Asia/Shanghai
-        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
-    restart: always
-redis:
-    build: ./images/redis
-    container_name: redis 
-    ports:
-        - "63791:6379"
-    volumes: 
-        - ./works:/data/www
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
+#mysql:
+#    build: ./images/mysql
+#    container_name: mysql
+#    ports:
+#        - "3306:3306"
+#    volumes:
+#        - ./volumes/logs/mysql:/var/log/mysql
+#        - ./volumes/db/mysql:/var/lib/mysql
+#    environment:
+#        TZ: Asia/Shanghai
+#        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+#    restart: always
+#redis:
+#    build: ./images/redis
+#    container_name: redis 
+#    ports:
+#        - "6379:6379"
+#    volumes: 
+#        - ./volumes/db/redis:/data/db/redis
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
+#memcached:
+#    build: ./images/memcached
+#    container_name: memcached 
+#    ports:
+#        - "11211:11211"
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
