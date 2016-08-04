@@ -7,5 +7,7 @@ RUN echo -e "[mongodb]\nname=MongoDB Repository\nbaseurl=https://repo.mongodb.or
 RUN yum install -y mongodb-org
 RUN mkdir -p /data/db
 
+ADD mongod.conf /etc/mongod.conf
+
 EXPOSE 27017
 ENTRYPOINT ["/usr/bin/mongod"]
