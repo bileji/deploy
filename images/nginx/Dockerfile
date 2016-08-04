@@ -12,7 +12,7 @@ RUN chown -R nginx:nginx /data/www
 
 RUN sed -Ei '/include \/etc\/nginx\/conf\.d\/\*\.conf/ a\    include\ \/etc\/nginx\/sites-enabled\/*;' /etc/nginx/nginx.conf
 
-EXPOSE 80 443
+EXPOSE 80 443 8000
 
 #CMD ["nginx"]
 CMD ["/sbin/init"]
