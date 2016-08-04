@@ -8,6 +8,8 @@ RUN yum -y install epel-release; yum clean all
 RUN yum -y install redis; yum clean all
 RUN mkdir -p /data/db
 
+ADD redis.conf /etc/redis.conf
+
 EXPOSE 6379
 
 CMD [ "redis-server" ]
