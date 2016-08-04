@@ -10,10 +10,8 @@ RUN { \
 	echo "enabled=1"; \
 } > /etc/yum.repos.d/mongodb-org-3.0.repo
 
-RUN yum update -y
 RUN yum install -y mongodb-org
 
-ENV AUTH yes
 ENV STORAGE_ENGINE wiredTiger
 ENV JOURNALING yes
 
@@ -25,4 +23,3 @@ EXPOSE 27017 28017
 VOLUME /data/db
 
 CMD ["/run.sh"]
-#CMD ["/sbin/init"]

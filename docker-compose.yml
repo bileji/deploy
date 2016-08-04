@@ -6,22 +6,22 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-nginx:
-    build: ./images/nginx
-    container_name: nginx 
-    links:
-        - php
-    ports:
-        - "80:80"
-        - "443:443"
-    volumes: 
-        - ./works:/data/www
-        - ./volumes/logs/nginx:/var/log/nginx
-        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
-        - ./volumes/nginx/includes:/etc/nginx/includes
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
+#nginx:
+#    build: ./images/nginx
+#    container_name: nginx 
+#    links:
+#        - php
+#    ports:
+#        - "80:80"
+#        - "443:443"
+#    volumes: 
+#        - ./works:/data/www
+#        - ./volumes/logs/nginx:/var/log/nginx
+#        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
+#        - ./volumes/nginx/includes:/etc/nginx/includes
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
 #php:
 #    build: ./images/php7
 #    container_name: php
@@ -34,30 +34,30 @@ nginx:
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-php:
-    build: ./images/php5
-    container_name: php
-    ports:
-        - "9000:9000"
-    volumes: 
-        - ./works:/data/www
-        - ./volumes/logs/php5/php:/data/logs/php
-        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
-mysql:
-    build: ./images/mysql
-    container_name: mysql
-    ports:
-        - "3306:3306"
-    volumes:
-        - ./volumes/logs/mysql:/var/log/mysql
-        - ./volumes/db/mysql:/var/lib/mysql
-    environment:
-        TZ: Asia/Shanghai
-        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
-    restart: always
+#php:
+#    build: ./images/php5
+#    container_name: php
+#    ports:
+#        - "9000:9000"
+#    volumes: 
+#        - ./works:/data/www
+#        - ./volumes/logs/php5/php:/data/logs/php
+#        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
+#mysql:
+#    build: ./images/mysql
+#    container_name: mysql
+#    ports:
+#        - "3306:3306"
+#    volumes:
+#        - ./volumes/logs/mysql:/var/log/mysql
+#        - ./volumes/db/mysql:/var/lib/mysql
+#    environment:
+#        TZ: Asia/Shanghai
+#        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+#    restart: always
 #redis:
 #    build: ./images/redis
 #    container_name: redis 
@@ -68,21 +68,23 @@ mysql:
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-memcached:
-    build: ./images/memcached
-    container_name: memcached 
-    ports:
-        - "11211:11211"
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
-#mongodb:
-#    build: ./images/mongodb
-#    container_name: mongodb
+#memcached:
+#    build: ./images/memcached
+#    container_name: memcached 
 #    ports:
-#        - "27018:27017"
-#    volumes:
-#        - ./volumes/db/mongodb:/data/db
+#        - "11211:11211"
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
+mongodb:
+    build: ./images/mongodb
+    container_name: mongodb
+    ports:
+        - "27017:27017"
+    volumes:
+        - ./volumes/db/mongodb:/data/db
+    environment:
+        MONGODB_USER: "xzt_db"
+        MONGODB_PASS: "841c6e89"
+        TZ: Asia/Shanghai
+    restart: always
