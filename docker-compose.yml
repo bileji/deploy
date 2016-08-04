@@ -30,10 +30,22 @@
 #    ports:
 #        - "9001:9000"
 #    volumes: 
-#        - ./volumes/logs/php7/:/data/logs
+#        - ./volumes/logs/php7/php:/data/logs/php
+#        - ./volumes/logs/php7/php-fpm:/data/logs/php-fpm
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
+php5:
+    build: ./images/php5
+    container_name: php5
+    ports:
+        - "9002:9000"
+    volumes: 
+        - ./volumes/logs/php5/php:/data/logs/php
+        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
 #mysql:
 #    build: ./images/mysql
 #    container_name: mysql
@@ -56,11 +68,11 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-memcached:
-    build: ./images/memcached
-    container_name: memcached 
-    ports:
-        - "11212:11211"
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
+#memcached:
+#    build: ./images/memcached
+#    container_name: memcached 
+#    ports:
+#        - "11212:11211"
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
