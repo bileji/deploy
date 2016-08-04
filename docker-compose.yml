@@ -24,9 +24,9 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-#php7:
+#php:
 #    build: ./images/php7
-#    container_name: php7
+#    container_name: php
 #    ports:
 #        - "9000:9000"
 #    volumes: 
@@ -35,17 +35,17 @@
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
-php5:
-    build: ./images/php5
-    container_name: php5
-    ports:
-        - "9000:9000"
-    volumes: 
-        - ./volumes/logs/php5/php:/data/logs/php
-        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
-    environment:
-        TZ: Asia/Shanghai
-    restart: always
+#php:
+#    build: ./images/php5
+#    container_name: php
+#    ports:
+#        - "9000:9000"
+#    volumes: 
+#        - ./volumes/logs/php5/php:/data/logs/php
+#        - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
 #mysql:
 #    build: ./images/mysql
 #    container_name: mysql
@@ -76,3 +76,13 @@ php5:
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
+mongodb:
+    build: ./images/mongodb
+    container_name: mongodb
+    ports:
+        - "27018:27017"
+    volumes:
+        - ./volumes/db/mongodb:/data/db
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
