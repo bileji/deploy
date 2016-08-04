@@ -15,8 +15,7 @@ RUN yum clean all
 RUN yum install -y libmcrypt php56w php56w-fpm php56w-mbstring php56w-gd php56w-dom php56w-pdo php56w-mysqlnd php56w-mcrypt php56w-process php56w-pear php56w-cli php56w-xml php56w-curl php56w-pecl-memcached php56w-devel php56w-pecl-redis
 
 RUN sed -E -i "s/^error_log\ = \/var\/log\/php-fpm\/error.log/error_log = \/data\/logs\/php-fpm\/error.log/" /etc/php-fpm.conf
-RUN sed -E -i "s/^listen\ =.+?$/listen = 0.0.0.0:9000/" /etc/php-fpm.d/www.conf 
-RUN sed -E -i "s/^listen.allowed_clients\ =.+?$/listen.allowed_clients = 0.0.0.0:9000/" /etc/php-fpm.d/www.conf 
+RUN sed -E -i "s/^listen\ =.+?$/listen = 0.0.0.0:9000/" /etc/php-fpm.d/www.conf
 RUN sed -E -i "s/^slowlog\ = \/var\/log\/php-fpm\/www-slow.log/slowlog = \/data\/logs\/php\/slow.log/" /etc/php-fpm.d/www.conf 
 RUN sed -E -i "s/^php_admin_value\[error_log\]\ =.+?$/php_admin_value\[error_log\]\ =\ \/data\/logs\/php\/error.log/" /etc/php-fpm.d/www.conf 
 RUN sed -E -i "s/^post_max_size\ =.+?$/post_max_size = 100M/" /etc/php.ini
