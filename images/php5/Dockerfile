@@ -26,6 +26,9 @@ RUN sed -E -i "s/^error_reporting\ .+?$/error_reporting = E_ALL \& \~E_DEPRECATE
 # RUN groupadd www-data && useradd -g www-data www-data
 # RUN mkdir /data/www && chmod 777 -R /data/www && chown -R www-data:www-data /data/www
 
+ADD ./ext/*.ini /etc/php.d/
+ADD ./ext/*.so /usr/lib64/php/modules/
+
 EXPOSE 9000
 
 #CMD ["/sbin/init"]
