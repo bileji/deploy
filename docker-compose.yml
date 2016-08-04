@@ -14,8 +14,8 @@
 #        - mysql
 #        - redis
 #    ports:
-#        - "801:80"
-#        - "4431:443"
+#        - "80:80"
+#        - "443:443"
 #    volumes: 
 #        - ./works:/data/www
 #        - ./volumes/logs/nginx:/var/log/nginx
@@ -28,7 +28,7 @@
 #    build: ./images/php7
 #    container_name: php7
 #    ports:
-#        - "9001:9000"
+#        - "9000:9000"
 #    volumes: 
 #        - ./volumes/logs/php7/php:/data/logs/php
 #        - ./volumes/logs/php7/php-fpm:/data/logs/php-fpm
@@ -39,7 +39,7 @@ php5:
     build: ./images/php5
     container_name: php5
     ports:
-        - "9002:9000"
+        - "9000:9000"
     volumes: 
         - ./volumes/logs/php5/php:/data/logs/php
         - ./volumes/logs/php5/php-fpm:/data/logs/php-fpm
@@ -50,7 +50,7 @@ php5:
 #    build: ./images/mysql
 #    container_name: mysql
 #    ports:
-#        - "33061:3306"
+#        - "3306:3306"
 #    volumes:
 #        - ./volumes/logs/mysql:/var/log/mysql
 #        - ./volumes/db/mysql:/var/lib/mysql
@@ -62,9 +62,9 @@ php5:
 #    build: ./images/redis
 #    container_name: redis 
 #    ports:
-#        - "63791:6379"
+#        - "6379:6379"
 #    volumes: 
-#        - ./works:/data/www
+#        - ./volumes/db/redis:/data/db/redis
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always
@@ -72,7 +72,7 @@ php5:
 #    build: ./images/memcached
 #    container_name: memcached 
 #    ports:
-#        - "11212:11211"
+#        - "11211:11211"
 #    environment:
 #        TZ: Asia/Shanghai
 #    restart: always

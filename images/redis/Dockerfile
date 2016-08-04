@@ -17,4 +17,3 @@ RUN mkdir -p /data /data/db /data/db/redis && chown redis:redis /data/db/redis
 EXPOSE 6379
 
 CMD ["redis-server"]
-#CMD ["/sbin/init"]
