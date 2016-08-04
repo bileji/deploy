@@ -42,4 +42,3 @@ VOLUME /data/logs
 EXPOSE 9000
 
 CMD ["php-fpm", "-F"]
-#CMD ["/sbin/init"]
