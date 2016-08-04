@@ -11,6 +11,7 @@ RUN { \
 } > /etc/yum.repos.d/mongodb-org-3.0.repo
 
 RUN yum update -y
+RUN yum clean all
 RUN yum install -y mongodb-org
 
 ENV AUTH yes

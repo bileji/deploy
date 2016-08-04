@@ -12,6 +12,7 @@ MAINTAINER shuchao <shuc324@gmail.com>
 
 #update
 RUN yum -y update
+RUN yum clean all
 
 #php7
 RUN mkdir -p /data/logs /data/logs/php /data/logs/php-fpm && chmod 777 -R /data
