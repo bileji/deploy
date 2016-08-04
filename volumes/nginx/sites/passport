@@ -1,6 +1,6 @@
 server {
     listen 8000;
-    server_name api.runningdoctor.cn 121.40.176.25 localhost;
+    server_name api.xxx.cn 121.40.xx.xx localhost;
  
     root   /var/www/rd-passport/public;
  
