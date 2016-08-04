@@ -36,7 +36,7 @@ ADD ./ext/*.ini /etc/php.d/
 ADD ./ext/*.so /usr/lib64/php/modules/
 
 # RUN groupadd www-data && useradd -g www-data www-data
-# RUN mkdir /data/www && chmod 777 -R /data/www && chown -R www-data:www-data /data/www
+RUN mkdir -p /data/www && chmod 777 -R /data/www && chown -R www-data:www-data /data/www
 
 # cron php scripts
 RUN yum install -y vixie-cron
