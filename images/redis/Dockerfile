@@ -12,7 +12,7 @@ RUN sed -Ei "s/^bind 127\.0\.0\.1/bind 0\.0\.0\.0/" /etc/redis.conf
 RUN sed -Ei "s/^dir \/var\/lib\/redis\//dir \/data\/db\/redis\//" /etc/redis.conf
 RUN sed -Ei "s/^# rename-command CONFIG \"\"/rename-command CONFIG \"GIFNOC\"/" /etc/redis.conf
 RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command FLUSHALL \"LLAHSULF\"" /etc/redis.conf
-RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command EVAL \"LLAHSULF\"" /etc/redis.conf
+RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command EVAL \"EVAL\"" /etc/redis.conf
 
 RUN mkdir -p /data /data/db /data/db/redis && chown redis:redis /data/db/redis
 
