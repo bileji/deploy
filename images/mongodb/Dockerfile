@@ -3,15 +3,15 @@ FROM centos:6.6
 MAINTAINER shuchao <shuc324@gmail.com>
 
 RUN { \
-	echo "[mongodb-enterprise]"; \
-	echo "name=MongoDB Enterprise Repository"; \
-	echo "baseurl=https://repo.mongodb.com/yum/redhat/\$releasever/mongodb-enterprise/3.0/\$basearch/"; \
+	echo "[mongodb-org-3.0]"; \
+	echo "name=MongoDB Repository"; \
+	echo "baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.0/x86_64/"; \
 	echo "gpgcheck=0"; \
 	echo "enabled=1"; \
 } > /etc/yum.repos.d/mongodb-org-3.0.repo
 
 RUN yum update -y
-RUN yum install -y mongodb-enterprise
+RUN yum install -y mongodb-org
 
 ENV AUTH yes
 ENV STORAGE_ENGINE wiredTiger
