@@ -84,7 +84,10 @@ mongodb:
     volumes:
         - ./volumes/db/mongodb:/data/db
     environment:
-        MONGODB_USER: "xzt_db"
-        MONGODB_PASS: "841c6e89"
+        AUTH: "yes"
+        JOURNALING: "yes"
+        STORAGE_ENGINE: "wiredTiger"
+        MONGODB_USER: xzt_db
+        MONGODB_PASS: 841c6e89
         TZ: Asia/Shanghai
     restart: always

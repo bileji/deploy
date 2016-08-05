@@ -25,8 +25,7 @@ EOF
 fi
 
 echo "=> Done!"
-#touch /data/db/.mongodb_password_set
-echo "    mongo $DATABASE -u $USER -p $PASS --host <host> --port <port>" > /data/db/.mongodb_password_set
+echo "mongo $DATABASE -u $USER -p $PASS --host <host> --port <port>" > /data/db/.mongodb_password_set
 
 echo "========================================================================"
 echo "You can now connect to this MongoDB server using:"
