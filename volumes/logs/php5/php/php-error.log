@@ -1,0 +1,15 @@
+[05-Aug-2016 09:30:36 UTC] PHP Fatal error:  Uncaught exception 'MongoConnectionException' with message 'Failed to connect to: 49.213.11.59:27017: Authentication failed on database 'admin' with username 'xzt_db': auth failed' in /data/www/test/index.php:22
+Stack trace:
+#0 /data/www/test/index.php(22): Mongo->__construct('mongodb://xzt_d...')
+#1 {main}
+  thrown in /data/www/test/index.php on line 22
+[05-Aug-2016 09:30:37 UTC] PHP Fatal error:  Uncaught exception 'MongoConnectionException' with message 'Failed to connect to: 49.213.11.59:27017: Authentication failed on database 'admin' with username 'xzt_db': auth failed' in /data/www/test/index.php:22
+Stack trace:
+#0 /data/www/test/index.php(22): Mongo->__construct('mongodb://xzt_d...')
+#1 {main}
+  thrown in /data/www/test/index.php on line 22
+[05-Aug-2016 09:30:38 UTC] PHP Fatal error:  Uncaught exception 'MongoConnectionException' with message 'Failed to connect to: 49.213.11.59:27017: Authentication failed on database 'admin' with username 'xzt_db': auth failed' in /data/www/test/index.php:22
+Stack trace:
+#0 /data/www/test/index.php(22): Mongo->__construct('mongodb://xzt_d...')
+#1 {main}
+  thrown in /data/www/test/index.php on line 22

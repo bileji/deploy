@@ -1,0 +1,7 @@
+[05-Aug-2016 17:30:33] NOTICE: fpm is running, pid 1
+[05-Aug-2016 17:30:33] NOTICE: ready to handle connections
+[05-Aug-2016 17:30:33] WARNING: [pool www] child 5 said into stderr: "ERROR: Unable to set php_value 'soap.wsdl_cache_dir'"
+[05-Aug-2016 17:30:33] WARNING: [pool www] child 8 said into stderr: "ERROR: Unable to set php_value 'soap.wsdl_cache_dir'"
+[05-Aug-2016 17:30:33] WARNING: [pool www] child 7 said into stderr: "ERROR: Unable to set php_value 'soap.wsdl_cache_dir'"
+[05-Aug-2016 17:30:33] WARNING: [pool www] child 6 said into stderr: "ERROR: Unable to set php_value 'soap.wsdl_cache_dir'"
+[05-Aug-2016 17:30:33] WARNING: [pool www] child 9 said into stderr: "ERROR: Unable to set php_value 'soap.wsdl_cache_dir'"

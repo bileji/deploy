@@ -14,6 +14,7 @@ while [[ RET -ne 0 ]]; do
 done
 
 echo "=> Creating an ${USER} user with a ${_word} password in MongoDB"
+#remove auth schema; use admin; db.system.users.remove({}); db.system.version.remove({});db.system.version.insert({ "_id" : "authSchema", "currentVersion" : 3 });
 mongo admin --eval "db.createUser({user: '$USER', pwd: '$PASS', roles:[{role:'root',db:'admin'}]});"
 
 if [ "$DATABASE" != "admin" ]; then
