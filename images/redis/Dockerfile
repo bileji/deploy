@@ -7,11 +7,11 @@ RUN yum -y update; yum clean all
 RUN yum -y install epel-release; yum clean all
 RUN yum -y install redis; yum clean all
 
-RUN mkdir /etc/redis/ \
-    && mkdir /var/log/redis \
-    && mkdir /data/db -p
+RUN mkdir -p /etc/redis/
+RUN mkdir -p /var/log/redis
+RUN mkdir -p /data/db
 
-COPY redis.conf /etc/redis/redis.conf
+ADD redis.conf /etc/redis/redis.conf
 
 VOLUME /data/db
 WORKDIR /data/db
