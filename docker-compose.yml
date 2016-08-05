@@ -56,7 +56,7 @@
 #        - ./volumes/db/mysql:/var/lib/mysql
 #    environment:
 #        TZ: Asia/Shanghai
-#        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+#        MYSQL_ROOT_PASSWORD: "root"
 #    restart: always
 #redis:
 #    build: ./images/redis
