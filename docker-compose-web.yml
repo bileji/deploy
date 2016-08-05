@@ -1,0 +1,49 @@
+nginx:
+    image: daocloud.io/oblank/nginx
+    container_name: nginx 
+    links:
+        - php
+    ports:
+        - "80:80"
+        - "443:443"
+        - "8000:8000"
+    volumes: 
+        - /data/www/htdocs:/data/www
+        - /data/logs/nginx:/var/log/nginx
+        - ./volumes/nginx/sites:/etc/nginx/sites-enabled
+        - ./volumes/nginx/includes:/etc/nginx/includes
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
+php:
+    image: daocloud.io/oblank/php5
+    container_name: php
+    ports:
+        - "9000:9000"
+    volumes:
+        - /data/www/htdocs:/data/www 
+        - /data/logs/php5/php:/data/logs/php
+        - /data/logs/php5/php-fpm:/data/logs/php-fpm
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
+
+##proxy:
+##    build: ./images/proxy
+##    container_name: proxy
+##    ports:
+##        - "1080:1080"
+##    environment:
+##        TZ: Asia/Shanghai
+##    restart: always
+#php:
+#    build: ./images/php7
+#    container_name: php
+#    ports:
+#        - "9000:9000"
+#    volumes: 
+#        - /data/logs/php7/php:/data/logs/php
+#        - /data/logs/php7/php-fpm:/data/logs/php-fpm
+#    environment:
+#        TZ: Asia/Shanghai
+#    restart: always
