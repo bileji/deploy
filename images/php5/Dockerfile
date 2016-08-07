@@ -33,6 +33,12 @@ ADD ./ext/*.so /usr/lib64/php/modules/
 # cron php scripts
 RUN yum install -y vixie-cron
 RUN chkconfig --list crond
+#TODO fix error
+#vim /etc/pam.d/crond
+#change
+#session    require   pam_loginuid.so
+# as
+#session    required   pam_loginuid.so
 
 EXPOSE 9000
 
