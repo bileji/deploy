@@ -11,6 +11,8 @@ RUN { \
 } > /etc/yum.repos.d/mongodb-org-3.0.repo
 
 RUN yum install -y mongodb-org
+RUN sed -E -i "s/\#port\=27017/port\=27017/" /etc/mongod.conf
+RUN sed -E -i "s/bind_ip\=127\.0\.0\.1/bind_ip\=0\.0\.0\.0/" /etc/mongod.conf
 RUN mkdir -p /data /data/db && chmod 777 -R /data/db
 
 ADD run.sh /run.sh
