@@ -36,9 +36,9 @@ RUN chkconfig --list crond
 #TODO fix error
 #vim /etc/pam.d/crond
 #change
-#session    require   pam_loginuid.so
-# as
 #session    required   pam_loginuid.so
+# as
+#session    optional   pam_loginuid.so
 
 EXPOSE 9000
 
