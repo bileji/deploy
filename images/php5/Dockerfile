@@ -31,6 +31,7 @@ ADD ./ext/*.so /usr/lib64/php/modules/
 #crontab
 RUN yum install -y vixie-cron
 RUN chkconfig --list crond
+RUN chkconfig crond on
 RUN sed -E -i "s/account    required   pam_access.so/account    optional   pam_access.so/" /etc/pam.d/crond
 
 EXPOSE 9000
