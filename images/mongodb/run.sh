@@ -1,8 +1,9 @@
 #!/bin/bash
 set -m
 
-mongodb_cmd="mongod --directoryperdb"
-cmd="$mongodb_cmd --httpinterface --rest --master"
+mongodb_cmd="mongod"
+cmd="$mongodb_cmd --directoryperdb --httpinterface --rest --master"
+
 if [ "$AUTH" == "yes" ]; then
     cmd="$cmd --auth"
 fi
@@ -14,8 +15,6 @@ fi
 if [ "$OPLOG_SIZE" != "" ]; then
     cmd="$cmd --oplogSize $OPLOG_SIZE"
 fi
-
-cmd="$cmd -f /etc/mongod.conf"
 
 $cmd &
 
