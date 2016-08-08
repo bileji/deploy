@@ -40,6 +40,7 @@ RUN mkdir -p /data/www && chmod 777 -R /data/www && chown -R www-data:www-data /
 # cron php scripts
 RUN yum install -y vixie-cron
 RUN chkconfig --list crond
+RUN chkconfig crond on
 #TODO fix error
 #vim /etc/pam.d/crond
 #change

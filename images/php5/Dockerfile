@@ -33,6 +33,7 @@ ADD ./ext/*.so /usr/lib64/php/modules/
 # cron php scripts
 RUN yum install -y vixie-cron
 RUN chkconfig --list crond
+RUN chkconfig crond on
 #TODO fix error
 #vim /etc/pam.d/crond
 #change
