@@ -13,7 +13,7 @@ RUN sed -Ei "s/^dir \/var\/lib\/redis\//dir \/data\/db\/redis\//" /etc/redis.con
 RUN sed -Ei "s/^protected-mode\ .+?$/protected-mode\ no/" etc/redis.conf
 RUN sed -Ei "s/^# rename-command CONFIG \"\"/rename-command CONFIG \"GIFNOC\"/" /etc/redis.conf
 RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command FLUSHALL \"LLAHSULF\"" /etc/redis.conf
-RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command EVAL \"EVAL\"" /etc/redis.conf
+RUN sed -Ei "/^rename-command CONFIG \"GIFNOC\"/a\rename-command EVAL \"LAVE\"" /etc/redis.conf
 
 RUN mkdir -p /data /data/db /data/db/redis && chown redis:redis /data/db/redis
 
