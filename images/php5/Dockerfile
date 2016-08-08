@@ -28,6 +28,11 @@ RUN mkdir -p /data/logs /data/logs/php-fpm /data/logs/php && chmod 777 -R /data
 ADD ./ext/*.ini /etc/php.d/
 ADD ./ext/*.so /usr/lib64/php/modules/
 
+#crontab
+RUN yum install -y vixie-cron
+RUN chkconfig --list crond
+RUN sed -E -i "s/account    required   pam_access.so/account    optional   pam_access.so/" /etc/pam.d/crond
+
 EXPOSE 9000
 
 CMD ["php-fpm", "-F"]

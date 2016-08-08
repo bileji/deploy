@@ -8,6 +8,8 @@ RUN yum install -y nginx
 RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN mkdir -p /data/www /etc/nginx/includes && chown -R nginx:nginx /data/www
 RUN sed -Ei '/include \/etc\/nginx\/conf\.d\/\*\.conf/ a\    include\ \/etc\/nginx\/sites-enabled\/*\.conf;' /etc/nginx/nginx.conf
+RUN sed -Ei 's/worker_processes  1;/worker_processes  4;/' /etc/nginx/nginx.conf
+RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.save
 
 EXPOSE 80 443 8000
 
