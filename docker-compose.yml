@@ -31,9 +31,9 @@ mysql:
         - ./volumes/logs/mysql:/var/log/mysql
         - ./volumes/db/mysql:/var/lib/mysql
     environment:
-        MYSQL_USER: "xzt_db"
-        MYSQL_PASSWORD: "!dF3BBaf43"
-        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+        MYSQL_USER: "$set_user"
+        MYSQL_PASSWORD: "$set_pwd"
+        MYSQL_ROOT_PASSWORD: "$set_root_pwd"
     restart: always
 redis:
     build: ./images/redis
@@ -59,6 +59,6 @@ mongodb:
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
-        MONGODB_USER: "xzt_db"
-        MONGODB_PASS: "841c6e89"
+        MONGODB_USER: "$set_user"
+        MONGODB_PASS: "$set_pwd"
     restart: always

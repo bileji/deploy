@@ -1,0 +1,46 @@
+mysql:
+    image: 'daocloud.io/oblank/mysql'
+    container_name: mysql
+    ports:
+        - "3306:3306"
+    volumes:
+        - /data/logs/mysql:/var/log
+        - /data/db/mysql:/var/lib/mysql
+    environment:
+        #TZ: Asia/Shanghai
+        MYSQL_ROOT_PASSWORD: "$set_root_pwd"
+        MYSQL_DATABASE: "tsb_primary_store"
+        MYSQL_USER: "$set_user"
+        MYSQL_PASSWORD: "$set_pwd"
+    restart: always
+redis:
+    image: daocloud.io/oblank/redis
+    container_name: redis 
+    ports:
+        - "6379:6379"
+    volumes: 
+        - /data/db/redis:/data/db
+    environment:
+        TZ: Asia/Shanghai
+    restart: always
+memcached:
+     image: daocloud.io/oblank/memcached
+     container_name: memcached 
+     ports:
+         - "11211:11211"
+     environment:
+         TZ: Asia/Shanghai
+     restart: always
+mongodb:
+    image: daocloud.io/oblank/mongodb2_6
+    container_name: mongodb
+    ports:
+        - "27017:27017"
+    volumes:
+        - /data/db/mongodb:/data/db
+    environment:
+        TZ: Asia/Shanghai
+        JOURNALING: "yes"
+        MONGODB_USER: "$set_user"
+        MONGODB_PASS: "$set_pwd"
+    restart: always
