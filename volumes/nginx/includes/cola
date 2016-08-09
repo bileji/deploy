@@ -1,10 +1,10 @@
 location /groups/ {
-	rewrite ^/groups/(.*)$ /rd-server/app/webroot/$1;
+	rewrite ^/groups/(.*)$ /tsb-server/app/webroot/$1;
 	if (-f $request_filename) {
 		break;
 	}
 	if (!-f $request_filename) {
-		rewrite ^/rd-server/app/webroot/(.*)$ /rd-server/app/webroot/index.php?url=$1 last;
+		rewrite ^/tsb-server/app/webroot/(.*)$ /tsb-server/app/webroot/index.php?url=$1 last;
 		break;
 	}
 }
