@@ -58,5 +58,11 @@ COPY basic_db.sql /docker-entrypoint-initdb.d/
 RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["docker-entrypoint.sh"]
 
+#timezone
+RUN yes | cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 EXPOSE 3306
 CMD ["mysqld"]
+
+#TODO 加了 -v 参数启动失败
+#docker run --name mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD='root' -e MYSQL_DATABASE='tsb_primary_store' -e MYSQL_USER='xzt_db' -e MYSQL_PASSWORD='123456' -v /data/db/mysql:/var/lib/mysql -v /data/logs/mysql:/var/log  daocloud.io/oblank/mysql:php5-b5f79d3

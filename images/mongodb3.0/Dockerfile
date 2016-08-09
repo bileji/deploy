@@ -16,6 +16,9 @@ RUN mkdir -p /data /data/db && chmod 777 -R /data/db
 ADD run.sh /run.sh
 ADD set_mongodb_password.sh /set_mongodb_password.sh
 
+#timezone
+RUN yes | cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 EXPOSE 27017
 
 CMD ["/run.sh"]

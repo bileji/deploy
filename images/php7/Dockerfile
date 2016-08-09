@@ -26,7 +26,11 @@ ADD ./ext/*.so /usr/lib64/php/modules/
 RUN yum install -y vixie-cron
 RUN chkconfig --list crond
 RUN chkconfig crond on
-RUN sed -E -i "s/account    required   pam_access.so/account    optional   pam_access.so/" /etc/pam.d/crond 
+RUN sed -E -i "s/session    required   pam_loginuid.so/session    optional   pam_loginuid.so/" /etc/pam.d/crond
+
+#timezone
+RUN yes | cp -rf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
 
 RUN mkdir -p /data/www && chmod 777 -R /data/www
 RUN mkdir -p /data/logs /data/logs/php && chmod 777 -R /data
