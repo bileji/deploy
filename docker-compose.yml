@@ -20,7 +20,7 @@ php:
         - "9000:9000"
     volumes: 
         - ./works:/data/www
-        - ./volumes/logs/php/php:/data/logs/php
+        - ./volumes/logs/php:/data/logs/php
     restart: always
 mysql:
     build: ./images/mysql

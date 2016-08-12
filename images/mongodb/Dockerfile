@@ -11,7 +11,7 @@ RUN { \
 } > /etc/yum.repos.d/mongodb-org-2.6.repo
 
 RUN yum install -y mongodb-org
-RUN mkdir -p /data /data/db /data/logs /data/db/mongodb /data/logs/mongodb && chmod 777 -R /data/db /data/logs
+RUN mkdir -p /data/db/mongodb /data/logs/mongodb && chmod 777 -R /data/db /data/logs
 
 ADD run.sh /run.sh
 ADD set_mongodb_password.sh /set_mongodb_password.sh
