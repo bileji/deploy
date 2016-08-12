@@ -2,7 +2,7 @@
 set -m
 
 mongodb_cmd="mongod"
-cmd="$mongodb_cmd --directoryperdb --httpinterface --rest --master"
+cmd="$mongodb_cmd --directoryperdb --httpinterface --rest --master --logpath /data/logs/mongodb/mongod.log --dbpath /data/db/mongodb"
 
 if [ "$AUTH" == "yes" ]; then
     cmd="$cmd --auth"
