@@ -13,8 +13,17 @@ nginx:
         - ./volumes/nginx/sites:/etc/nginx/sites-enabled
         - ./volumes/nginx/includes:/etc/nginx/includes
     restart: always
+#php:
+#    build: ./images/php5
+#    container_name: php
+#    ports:
+#        - "9000:9000"
+#    volumes: 
+#        - ./works:/data/www
+#        - ./volumes/logs/php:/data/logs/php
+#    restart: always
 php:
-    build: ./images/php5
+    build: ./images/php7
     container_name: php
     ports:
         - "9000:9000"
@@ -50,8 +59,22 @@ memcached:
     ports:
         - "11211:11211"
     restart: always
+#mongodb:
+#    build: ./images/mongodb2
+#    container_name: mongodb
+#    ports:
+#        - "27017:27017"
+#    volumes:
+#        - ./volumes/db/mongodb:/data/db/mongodb
+#        - ./volumes/logs/mongodb:/data/logs/mongodb
+#    environment:
+#        AUTH: "yes"
+#        JOURNALING: "yes"
+#        MONGODB_USER: "xzt_db"
+#        MONGODB_PASS: "841c6e89"
+#    restart: always
 mongodb:
-    build: ./images/mongodb2
+    build: ./images/mongodb3
     container_name: mongodb
     ports:
         - "27017:27017"

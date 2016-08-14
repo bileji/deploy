@@ -3,12 +3,12 @@ FROM centos:6.6
 MAINTAINER shuchao <shuc324@gmail.com>
 
 RUN { \
-    echo "[mongodb]"; \
+    echo "[mongodb-org-3.0]"; \
     echo "name=MongoDB Repository"; \
-    echo "baseurl=http://downloads-distro.mongodb.org/repo/redhat/os/x86_64/"; \
+    echo "baseurl=https://repo.mongodb.org/yum/redhat/\$releasever/mongodb-org/3.0/x86_64/"; \
     echo "gpgcheck=0"; \
     echo "enabled=1"; \
-} > /etc/yum.repos.d/mongodb-org-2.6.repo
+} > /etc/yum.repos.d/mongodb-org-3.0.repo
 
 RUN yum install -y mongodb-org
 RUN mkdir -p /data/db/mongodb /data/logs/mongodb && chmod 777 -R /data/db /data/logs

@@ -24,7 +24,7 @@ RUN sed -E -i "s/^error_reporting\ .+?$/error_reporting\ =\ E_ALL \& \~E_DEPRECA
 RUN sed -E -i "s/^;error_log\ =\ php_errors.log/error_log\ =\ \/data\/logs\/php\/cli_error.log/" /etc/php.ini
  
 RUN mkdir -p /data/www && chmod 777 -R /data/www
-RUN mkdir -p /data/bin /data/logs/php && chmod 777 -R /data
+RUN mkdir -p /data/logs/php && chmod 777 -R /data/logs
 
 ADD ./ext/*.ini /etc/php.d/
 ADD ./ext/*.so /usr/lib64/php/modules/
