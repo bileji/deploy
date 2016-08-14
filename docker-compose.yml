@@ -51,7 +51,7 @@ memcached:
         - "11211:11211"
     restart: always
 mongodb:
-    build: ./images/mongodb
+    build: ./images/mongodb2
     container_name: mongodb
     ports:
         - "27017:27017"
