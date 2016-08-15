@@ -1,0 +1,31 @@
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] MongoDB starting : pid=5 port=27017 dbpath=/data/db/mongodb master=1 64-bit host=b90237823121
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] db version v3.0.12
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] git version: 33934938e0e95d534cebbaff656cde916b9c3573
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] build info: Linux ip-10-93-197-138 2.6.32-220.el6.x86_64 #1 SMP Wed Nov 9 08:03:13 EST 2011 x86_64 BOOST_LIB_VERSION=1_49
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] allocator: tcmalloc
+2016-08-15T02:05:19.031+0000 I CONTROL  [initandlisten] options: { master: true, net: { http: { RESTInterfaceEnabled: true, enabled: true } }, security: { authorization: "enabled" }, storage: { dbPath: "/data/db/mongodb", directoryPerDB: true, engine: "wiredTiger" }, systemLog: { destination: "file", path: "/data/logs/mongodb/mongod.log" } }
+2016-08-15T02:05:19.125+0000 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=1G,session_max=20000,eviction=(threads_max=4),statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] ** WARNING: You are running this process as the root user, which is not recommended.
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] 
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] 
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/enabled is 'always'.
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] 
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] ** WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'.
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] **        We suggest setting it to 'never'
+2016-08-15T02:05:22.887+0000 I CONTROL  [initandlisten] 
+2016-08-15T02:05:22.888+0000 I NETWORK  [websvr] admin web console waiting for connections on port 28017
+2016-08-15T02:05:25.292+0000 I REPL     [initandlisten] ******
+2016-08-15T02:05:25.292+0000 I REPL     [initandlisten] creating replication oplog of size: 990MB...
+2016-08-15T02:05:25.337+0000 I STORAGE  [initandlisten] Starting WiredTigerRecordStoreThread local.oplog.$main
+2016-08-15T02:05:25.771+0000 I REPL     [initandlisten] ******
+2016-08-15T02:05:25.823+0000 I NETWORK  [initandlisten] waiting for connections on port 27017
+2016-08-15T02:05:29.201+0000 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:60767 #1 (1 connection now open)
+2016-08-15T02:05:29.201+0000 I ACCESS   [conn1] note: no users configured in admin.system.users, allowing localhost access
+2016-08-15T02:05:29.204+0000 I NETWORK  [conn1] end connection 127.0.0.1:60767 (0 connections now open)
+2016-08-15T02:05:29.267+0000 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:60768 #2 (1 connection now open)
+2016-08-15T02:05:29.431+0000 I INDEX    [conn2] build index on: admin.system.users properties: { v: 1, unique: true, key: { user: 1, db: 1 }, name: "user_1_db_1", ns: "admin.system.users" }
+2016-08-15T02:05:29.431+0000 I INDEX    [conn2] 	 building index using bulk method
+2016-08-15T02:05:29.438+0000 I INDEX    [conn2] build index done.  scanned 0 total records. 0 secs
+2016-08-15T02:05:29.439+0000 I COMMAND  [conn2] command admin.$cmd command: createUser { createUser: "xzt_db", pwd: "xxx", roles: [ { role: "root", db: "admin" } ], digestPassword: false, writeConcern: { w: "majority", wtimeout: 30000.0 } } keyUpdates:0 writeConflicts:0 numYields:0 reslen:37 locks:{ Global: { acquireCount: { r: 10, w: 8 } }, Database: { acquireCount: { r: 1, w: 4, W: 4 } }, Collection: { acquireCount: { r: 1, w: 5 } } } 169ms
+2016-08-15T02:05:29.444+0000 I NETWORK  [conn2] end connection 127.0.0.1:60768 (0 connections now open)
