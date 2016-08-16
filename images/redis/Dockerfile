@@ -8,6 +8,7 @@ RUN rpm -Uvh http://download.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-
 RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-6.rpm
 RUN yum --enablerepo=remi,remi-test install -y redis
 
+RUN sed -E -i "s/^timeout 0/timeout 300/" /etc/redis.conf
 RUN sed -E -i "s/^bind 127.0.0.1/bind 0.0.0.0/" /etc/redis.conf
 RUN sed -E -i "s/^dir \/var\/lib\/redis\//dir \/data\/db\/redis\//" /etc/redis.conf
 RUN sed -E -i "s/^logfile \/var\/log\/redis\/redis.log/logfile \/data\/logs\/redis\/redis.log/" /etc/redis.conf
