@@ -40,9 +40,9 @@ mysql:
         - ./volumes/db/mysql:/data/db/mysql
         - ./volumes/logs/mysql:/data/logs/mysql
     environment:
-        MYSQL_USER: "xzt_db"
-        MYSQL_PASSWORD: "!dF3BBaf43"
-        MYSQL_ROOT_PASSWORD: "x!21DFe1c4"
+        MYSQL_USER: "xxxx"
+        MYSQL_PASSWORD: "N!F3ABaFui"
+        MYSQL_ROOT_PASSWORD: "T41Df!x2L4"
     restart: always
 redis:
     build: ./images/redis
@@ -70,8 +70,8 @@ memcached:
 #    environment:
 #        AUTH: "yes"
 #        JOURNALING: "yes"
-#        MONGODB_USER: "xzt_db"
-#        MONGODB_PASS: "841c6e89"
+#        MONGODB_USER: "xxxx"
+#        MONGODB_PASS: "Ot936E3g"
 #    restart: always
 mongodb:
     build: ./images/mongodb3
@@ -84,6 +84,6 @@ mongodb:
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
-        MONGODB_USER: "xzt_db"
-        MONGODB_PASS: "841c6e89"
+        MONGODB_USER: "xxxx"
+        MONGODB_PASS: "541R4evB"
     restart: always
