@@ -26,9 +26,6 @@ mysql:
     container_name: mysql
     ports:
         - "3306:3306"
-    volumes:
-        - ./volumes/db/mysql:/data/db/mysql
-        - ./volumes/logs/mysql:/data/logs/mysql
     environment:
         MYSQL_USER: "bileji"
         MYSQL_PASSWORD: "O!g3L70B%F"
