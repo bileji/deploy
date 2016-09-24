@@ -30,7 +30,7 @@ RUN apt-get update && apt-get install -y perl pwgen --no-install-recommends && r
 RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
 
 ENV MYSQL_MAJOR 5.7
-ENV MYSQL_VERSION 5.7.14-1debian8
+ENV MYSQL_VERSION 5.7.15-1debian8
 
 RUN echo "deb http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}" > /etc/apt/sources.list.d/mysql.list
 
@@ -44,9 +44,7 @@ RUN { \
 } | debconf-set-selections \
 && apt-get update && apt-get install -y mysql-server="${MYSQL_VERSION}" && rm -rf /var/lib/apt/lists/* \
 && rm -rf /var/lib/mysql && mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld \
-&& chown -R mysql:mysql /data/db/mysql /var/run/mysqld /data/logs/mysql \
-# ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
-&& chmod 777 /var/run/mysqld
+&& chown -R mysql:mysql /data/db/mysql /var/run/mysqld /data/logs/mysql && chmod 777 /var/run/mysqld
 
 # don't reverse lookup hostnames, they are usually another container
 RUN sed -E -i "s/^(bind-address|log)/#&/" /etc/mysql/my.cnf
