@@ -30,8 +30,8 @@ mysql:
         - ./volumes/db/mysql:/data/db/mysql
         - ./volumes/logs/mysql:/data/logs/mysql
     environment:
-        MYSQL_USER: "root"
-        MYSQL_PASSWORD: "o!F3LBaFui"
+        MYSQL_USER: "bileji"
+        MYSQL_PASSWORD: "O!g3L70B%F"
         MYSQL_ROOT_PASSWORD: "T41vF!x2L4"
     restart: always
 redis:
