@@ -46,7 +46,7 @@ RUN { \
 && rm -rf /var/lib/mysql && mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld \
 && chown -R mysql:mysql /data/db/mysql /var/run/mysqld /data/logs/mysql \
 # ensure that /var/run/mysqld (used for socket and lock files) is writable regardless of the UID our mysqld instance ends up having at runtime
-&& chmod 777 /var/run/mysqld && chmod -R 777 /data/db/mysql /data/logs/mysql
+&& chmod 777 /var/run/mysqld && chmod 777 /data/db/mysql && chmod 777 /data/logs/mysql
 
 # don't reverse lookup hostnames, they are usually another container
 RUN sed -E -i "s/^(bind-address|log)/#&/" /etc/mysql/my.cnf
