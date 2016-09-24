@@ -1,29 +1,19 @@
 nginx:
-    build: ./images/nginx
+    image: daocloud.io/shuc/nginx
     container_name: nginx 
     links:
         - php
     ports:
         - "80:80"
         - "443:443"
-        - "8000:8000"
     volumes: 
         - ./works:/data/www
         - ./volumes/logs/nginx:/var/log/nginx
         - ./volumes/nginx/sites:/etc/nginx/sites-enabled
         - ./volumes/nginx/includes:/etc/nginx/includes
     restart: always
-#php:
-#    build: ./images/php5
-#    container_name: php
-#    ports:
-#        - "9000:9000"
-#    volumes: 
-#        - ./works:/data/www
-#        - ./volumes/logs/php:/data/logs/php
-#    restart: always
 php:
-    build: ./images/php7
+    image: daocloud.io/shuc/php7
     container_name: php
     ports:
         - "9000:9000"
@@ -32,7 +22,7 @@ php:
         - ./volumes/logs/php:/data/logs/php
     restart: always
 mysql:
-    build: ./images/mysql
+    image: daocloud.io/shuc/mysql
     container_name: mysql
     ports:
         - "3306:3306"
@@ -40,12 +30,12 @@ mysql:
         - ./volumes/db/mysql:/data/db/mysql
         - ./volumes/logs/mysql:/data/logs/mysql
     environment:
-        MYSQL_USER: "xxxx"
-        MYSQL_PASSWORD: "N!F3ABaFui"
-        MYSQL_ROOT_PASSWORD: "T41Df!x2L4"
+        MYSQL_USER: "root"
+        MYSQL_PASSWORD: "o!F3LBaFui"
+        MYSQL_ROOT_PASSWORD: "T41vF!x2L4"
     restart: always
 redis:
-    build: ./images/redis
+    image: daocloud.io/shuc/redis
     container_name: redis 
     ports:
         - "6379:6379"
@@ -54,27 +44,13 @@ redis:
         - ./volumes/logs/redis:/data/logs/redis
     restart: always
 memcached:
-    build: ./images/memcached
+    image: daocloud.io/shuc/memcached
     container_name: memcached 
     ports:
         - "11211:11211"
     restart: always
-#mongodb:
-#    build: ./images/mongodb2
-#    container_name: mongodb
-#    ports:
-#        - "27017:27017"
-#    volumes:
-#        - ./volumes/db/mongodb:/data/db/mongodb
-#        - ./volumes/logs/mongodb:/data/logs/mongodb
-#    environment:
-#        AUTH: "yes"
-#        JOURNALING: "yes"
-#        MONGODB_USER: "xxxx"
-#        MONGODB_PASS: "Ot936E3g"
-#    restart: always
 mongodb:
-    build: ./images/mongodb3
+    image: daocloud.io/shuc/mongodb3
     container_name: mongodb
     ports:
         - "27017:27017"
@@ -84,6 +60,6 @@ mongodb:
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
-        MONGODB_USER: "xxxx"
+        MONGODB_USER: "root"
         MONGODB_PASS: "541R4evB"
     restart: always
