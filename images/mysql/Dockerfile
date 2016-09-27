@@ -48,6 +48,7 @@ RUN { \
 
 # don't reverse lookup hostnames, they are usually another container
 RUN sed -E -i "s/^(bind-address|log)/#&/" /etc/mysql/my.cnf
+RUN sed -E -i "s/^(bind-address|log)/#&/" /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN sed -E -i "s/^datadir.+?$/datadir\ =\ \/data\/db\/mysql/" /etc/mysql/mysql.conf.d/mysqld.cnf
 RUN sed -E -i "s/^log-error.+?$/log-error\ =\ \/data\/logs\/mysql\/error.log/" /etc/mysql/mysql.conf.d/mysqld.cnf
 
