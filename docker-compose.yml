@@ -27,7 +27,7 @@ mysql:
     ports:
         - "3306:3306"
     environment:
-        MYSQL_USER: "bileji"
+        MYSQL_USER: "admin"
         MYSQL_PASSWORD: "O!g3L70B%F"
         MYSQL_ROOT_PASSWORD: "T41vF!x2L4"
     restart: always
@@ -51,9 +51,6 @@ mongodb:
     container_name: mongodb
     ports:
         - "27017:27017"
-    volumes:
-        - ./volumes/db/mongodb:/data/db/mongodb
-        - ./volumes/logs/mongodb:/data/logs/mongodb
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
