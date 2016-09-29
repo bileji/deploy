@@ -18,7 +18,7 @@ RUN gosu nobody true
 
 RUN mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld
 RUN chown -R mysql:mysql /data/db/mysql /data/logs/mysql /var/run/mysqld
-RUN rm -rf /var/lib/mysql && chmod -R 777 /var/run/mysqld
+RUN chmod -R 777 /var/run/mysqld /var/lib/mysql
 
 RUN sed -Ei "s/^(bind-address|log)/#&/" /etc/my.cnf
 RUN sed -Ei "s/^datadir.+?/datadir=\/data\/db\/mysql/" /etc/my.cnf
