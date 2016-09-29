@@ -13,9 +13,9 @@ RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/dow
 RUN curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc"
 RUN gpg --verify /usr/local/bin/gosu.asc
 RUN rm -rf /usr/local/bin/gosu.asc /root/.gnupg/
-RUN chmod a+x /usr/local/bin/gosu && gosu nobody true
-
-RUN remove wget ca-certificates
+RUN chmod a+x /usr/local/bin/gosu
+RUN gosu nobody true
+RUN yum remove wget ca-certificates -y
 
 RUN mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld
 RUN chown -R mysql:mysql /data/db/mysql /data/logs/mysql /var/run/mysqld
