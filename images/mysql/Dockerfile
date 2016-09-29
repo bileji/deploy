@@ -1,63 +1,35 @@
-FROM debian:jessie
+FROM centos:6.6
 
-# add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
-# RUN groupadd -r mysql && useradd -r -g mysql mysql
+MAINTAINER shuchao <shuc324@gmail.com>
 
-# add gosu for easy step-down from root
+RUN yum install epel-release -y && yum update -y && rpm -Uvh http://repo.mysql.com//mysql57-community-release-el6-9.noarch.rpm
+RUN yum install mysql-community-server perl pwgen ca-certificates -y
+
+# install gosu to easy step-down from root
 ENV GOSU_VERSION 1.7
-RUN set -x \
-&& apt-get update && apt-get install -y --no-install-recommends ca-certificates wget && rm -rf /var/lib/apt/lists/* \
-&& wget -O /usr/local/bin/gosu "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture)" \
-&& wget -O /usr/local/bin/gosu.asc "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$(dpkg --print-architecture).asc" \
-&& export GNUPGHOME="$(mktemp -d)" \
-&& gpg --keyserver ha.pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 \
-&& gpg --batch --verify /usr/local/bin/gosu.asc /usr/local/bin/gosu \
-&& rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc \
-&& chmod +x /usr/local/bin/gosu \
-&& gosu nobody true \
-&& apt-get purge -y --auto-remove ca-certificates wget
+RUN set -x
+RUN gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+RUN curl -o /usr/local/bin/gosu -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64"
+RUN curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-amd64.asc"
+RUN gpg --verify /usr/local/bin/gosu.asc
+RUN rm -rf /usr/local/bin/gosu.asc /root/.gnupg/
+RUN chmod a+x /usr/local/bin/gosu
+RUN gosu nobody true
 
-RUN mkdir /docker-entrypoint-initdb.d
+RUN mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld
+RUN chown -R mysql:mysql /data/db/mysql /data/logs/mysql /var/run/mysqld
+RUN chmod -R 777 /var/run/mysqld /var/lib/mysql
 
-# FATAL ERROR: please install the following Perl modules before executing /usr/local/mysql/scripts/mysql_install_db:
-# File::Basename
-# File::Copy
-# Sys::Hostname
-# Data::Dumper
-RUN apt-get update && apt-get install -y perl pwgen --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN sed -Ei "s/^(bind-address)/#&/" /etc/my.cnf
+RUN sed -Ei "s/^datadir.+?/datadir=\/data\/db\/mysql/" /etc/my.cnf
+RUN sed -Ei "s/^log-error.+?/log-error=\/data\/logs\/mysql\/mysqld.log/" /etc/my.cnf
+RUN sed -Ei "/^log-error/a\slow-query-log=true" /etc/my.cnf
+RUN sed -Ei "/^slow-query-log/a\long-query-time=1" /etc/my.cnf
+RUN sed -Ei "/^long-query-time/a\slow-query-log-file=\/data\/logs\/mysql\/slow_query.log" /etc/my.cnf
 
-# gpg: key 5072E1F5: public key "MySQL Release Engineering <mysql-build@oss.oracle.com>" imported
-RUN apt-key adv --keyserver ha.pool.sks-keyservers.net --recv-keys A4A9406876FCBD3C456770C88C718D3B5072E1F5
-
-ENV MYSQL_MAJOR 5.7
-ENV MYSQL_VERSION 5.7.15-1debian8
-
-RUN echo "deb http://repo.mysql.com/apt/debian/ jessie mysql-${MYSQL_MAJOR}" > /etc/apt/sources.list.d/mysql.list
-
-# the "/var/lib/mysql" stuff here is because the mysql-server postinst doesn't have an explicit way to disable the mysql_install_db codepath besides having a database already "configured" (ie, stuff in /var/lib/mysql/mysql)
-# also, we set debconf keys to make APT a little quieter
-RUN { \
-    echo mysql-community-server mysql-community-server/data-dir select ''; \
-    echo mysql-community-server mysql-community-server/root-pass password ''; \
-    echo mysql-community-server mysql-community-server/re-root-pass password ''; \
-    echo mysql-community-server mysql-community-server/remove-test-db select false; \
-} | debconf-set-selections \
-&& apt-get update && apt-get install -y mysql-server="${MYSQL_VERSION}" && rm -rf /var/lib/apt/lists/* \
-&& rm -rf /var/lib/mysql && mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld \
-&& chown -R mysql:mysql /data/db/mysql /var/run/mysqld /data/logs/mysql && chmod 777 /var/run/mysqld
-
-# don't reverse lookup hostnames, they are usually another container
-RUN sed -E -i "s/^(bind-address|log)/#&/" /etc/mysql/*
-RUN sed -E -i "s/^datadir.+?$/datadir\ =\ \/data\/db\/mysql/" /etc/mysql/mysql.conf.d/mysqld.cnf
-RUN sed -E -i "s/^log-error.+?$/log-error\ =\ \/data\/logs\/mysql\/error.log/" /etc/mysql/mysql.conf.d/mysqld.cnf
-
-RUN echo 'skip-host-cache\nskip-name-resolve' | awk '{ print } $1 == "[mysqld]" && c == 0 { c = 1; system("cat") }' /etc/mysql/my.cnf > /tmp/my.cnf
-RUN mv /tmp/my.cnf /etc/mysql/my.cnf
-
-COPY docker-entrypoint.sh /usr/local/bin/
-COPY basic_db.sql /docker-entrypoint-initdb.d/
-RUN ln -s usr/local/bin/docker-entrypoint.sh /entrypoint.sh
-ENTRYPOINT ["docker-entrypoint.sh"]
+COPY entrypoint.sh /usr/local/bin/
+COPY init_db.sql /entrypoint-initdb.d/
+ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3306
-CMD ["mysqld"]
+CMD ["mysqld", "-u", "mysql"]
