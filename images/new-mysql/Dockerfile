@@ -23,7 +23,7 @@ RUN chmod -R 777 /var/run/mysqld /var/lib/mysql
 RUN sed -Ei "s/^(bind-address)/#&/" /etc/my.cnf
 RUN sed -Ei "s/^datadir.+?/datadir=\/data\/db\/mysql/" /etc/my.cnf
 RUN sed -Ei "s/^log-error.+?/log-error=\/data\/logs\/mysql\/mysqld.log/" /etc/my.cnf
-RUN sed -Ei "/^datadir/a\slow-query-log=true" /etc/my.cnf
+RUN sed -Ei "/^log-error/a\slow-query-log=true" /etc/my.cnf
 RUN sed -Ei "/^slow-query-log/a\long-query-time=1" /etc/my.cnf
 RUN sed -Ei "/^long-query-time/a\slow-query-log-file=\/data\/logs\/mysql\/slow_query.log" /etc/my.cnf
 
