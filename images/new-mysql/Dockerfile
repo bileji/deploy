@@ -18,4 +18,4 @@ COPY init_db.sql /entrypoint-initdb.d/
 ENTRYPOINT ["entrypoint.sh"]
 
 EXPOSE 3306
-CMD ["mysqld"]
+CMD ["mysqld", "-u", "mysql"]
