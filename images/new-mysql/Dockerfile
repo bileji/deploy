@@ -2,8 +2,8 @@ FROM centos:6.6
 
 MAINTAINER shuchao <shuc324@gmail.com>
 
-RUN yum update -y && rpm -Uvh http://repo.mysql.com//mysql57-community-release-el6-9.noarch.rpm
-RUN yum install mysql-community-server perl pwgen -y
+RUN yum install epel-release -y && yum update -y && rpm -Uvh http://repo.mysql.com//mysql57-community-release-el6-9.noarch.rpm
+RUN yum install mysql-community-server perl pwgen ca-certificates -y
 
 # install gosu to easy step-down from root
 ENV GOSU_VERSION 1.7
@@ -14,6 +14,8 @@ RUN curl -o /usr/local/bin/gosu.asc -SL "https://github.com/tianon/gosu/releases
 RUN gpg --verify /usr/local/bin/gosu.asc
 RUN rm -rf /usr/local/bin/gosu.asc /root/.gnupg/
 RUN chmod a+x /usr/local/bin/gosu && gosu nobody true
+
+RUN remove wget ca-certificates
 
 RUN mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld
 RUN chown -R mysql:mysql /data/db/mysql /data/logs/mysql /var/run/mysqld
