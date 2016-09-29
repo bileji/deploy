@@ -8,8 +8,8 @@ nginx:
         - "443:443"
         - "8000:8000"
     volumes: 
-        - ./works:/data/www
-        - ./volumes/logs/nginx:/var/log/nginx
+        - /data/www/htdocs:/data/www
+        - /data/logs/nginx:/var/log/nginx
         - ./volumes/nginx/sites:/etc/nginx/sites-enabled
         - ./volumes/nginx/includes:/etc/nginx/includes
     restart: always
@@ -19,9 +19,14 @@ php:
     ports:
         - "9000:9000"
     volumes: 
-        - ./works:/data/www
-        - ./volumes/logs/php:/data/logs/php
+        - /data/www/htdocs:/data/www
+        - /data/logs/php:/data/logs/php
     extra_hosts:
         - "db.pro.com:127.0.0.1"
         - "pp.pro.com:127.0.0.1"
+    environment:
+        - MG_DB_UN=root
+        - MG_DB_PWD=123456
+        - MY_DB_UN=root
+        - MY_DB_PWD=123456
     restart: always
