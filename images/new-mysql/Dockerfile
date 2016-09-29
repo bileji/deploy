@@ -7,4 +7,4 @@ RUN yum install mysql-community-server -y
 
 EXPOSE 3306
 
-CMD ["/etc/init.d/mysqld", "start"]
+CMD ["/usr/sbin/run_init"]

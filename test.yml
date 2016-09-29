@@ -1,0 +1,6 @@
+mysql:
+    image: daocloud.io/shuc/test
+    container_name: mysql
+    ports:
+        - "3306:3306"
+    restart: always
