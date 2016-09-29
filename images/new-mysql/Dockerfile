@@ -15,7 +15,6 @@ RUN gpg --verify /usr/local/bin/gosu.asc
 RUN rm -rf /usr/local/bin/gosu.asc /root/.gnupg/
 RUN chmod a+x /usr/local/bin/gosu
 RUN gosu nobody true
-RUN yum remove wget ca-certificates -y
 
 RUN mkdir -p /data/db/mysql /data/logs/mysql /var/run/mysqld
 RUN chown -R mysql:mysql /data/db/mysql /data/logs/mysql /var/run/mysqld
