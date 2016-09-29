@@ -21,4 +21,7 @@ php:
     volumes: 
         - ./works:/data/www
         - ./volumes/logs/php:/data/logs/php
+    extra_hosts:
+        - "db.rd.com:127.0.0.1"
+        - "pp.rd.com:127.0.0.1"
     restart: always

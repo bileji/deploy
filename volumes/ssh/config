@@ -1,0 +1,5 @@
+host dreamix-git                                                                                                    
+user git
+hostname 121.40.190.5
+port 36000
+identityfile ~/.ssh/docker

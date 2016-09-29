@@ -1,7 +1,7 @@
 #!/bin/bash
-MOUNT="./volumes/"
+MOUNT="/data/"
 DB_DIRS=("mysql" "redis" "mongodb")
-LOG_DIRS=("mysql" "redis" "mongodb" "nginx" "php")
+LOG_DIRS=("mysql" "redis" "mongodb")
 for DIR in ${DB_DIRS[*]}
 do
 	DB_PATH_NAME="${MOUNT/%\//}/db/${DIR}"
