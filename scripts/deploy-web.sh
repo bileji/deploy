@@ -12,3 +12,5 @@ do
 done
 
 echo "\033[32minit dir done!\033[0m";
+
+# todo ...
