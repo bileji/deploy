@@ -45,7 +45,7 @@ cp -r ${DEPLOY_ROOT/%\//}/volumes/ssh/* ~/.ssh > /dev/null 2>&1 && chmod 600 ~/.
 
 # 克隆项目代码
 command -v git > /dev/null 2>&1 || { echo >&2 "\033[31mI need git but it's not installed. aborting.\033[0m"; exit 1; }
-mkdir -p /data/www/htdocs && cd /data/www/htdocs
+rm -rf /data/www/htdocs && mkdir -p /data/www/htdocs && cd /data/www/htdocs
 git clone -b new dreamix-git:tsb-chat
 git clone -b php7 dreamix-git:tsb-passport
 git clone -b HX-release dreamix-git:tsb-web
