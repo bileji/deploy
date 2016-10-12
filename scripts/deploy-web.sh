@@ -52,10 +52,10 @@ git clone -b HX-release dreamix-git:tsb-web
 git clone -b cola dreamix-git:cola && git clone -b HuaXi dreamix-git:tsb-server
 
 # 获取mongodb and mysql username password
-MYSQL_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_USER|awk -F ":" '{print $2}'`
-MYSQL_PASSWORD=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_PASSWORD|awk -F ":" '{print $2}'`
-MONGO_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MONGODB_USER|awk -F ":" '{print $2}'`
-MONGO_PASSWORD=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MONGODB_PASS|awk -F ":" '{print $2}'`
+MYSQL_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_USER|awk -F ":" '{print $2}'|tr -d '[ ]'`
+MYSQL_PASSWORD=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_PASSWORD|awk -F ":" '{print $2}'|tr -d '[ ]'`
+MONGO_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MONGODB_USER|awk -F ":" '{print $2}'|tr -d '[ ]'`
+MONGO_PASSWORD=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MONGODB_PASS|awk -F ":" '{print $2}'|tr -d '[ ]'`
 
 MYSQL_USERNAME=${MYSQL_USERNAME//\"}
 MYSQL_PASSWORD=${MYSQL_PASSWORD//\"}
@@ -80,3 +80,5 @@ sed -Ei "s/'password'.+?/'password' => '${MYSQL_PASSWORD}',/g" /data/www/htdocs/
 sed -Ei "1,14s/'login'.+?/'login' => '${MONGO_USERNAME}',/" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "1,14s/'password'.+?/'password' => '${MONGO_PASSWORD}',/" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "1,14s/'database'.+?/'database' => 'admin',/" /data/www/htdocs/tsb-server/app/config/database.php
+
+docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
