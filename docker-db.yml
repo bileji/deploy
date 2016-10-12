@@ -1,5 +1,5 @@
 mysql:
-    build: ./images/mysql
+    image: daocloud.io/shuc/mysql
     container_name: mysql
     ports:
         - "3306:3306"
@@ -12,7 +12,7 @@ mysql:
         MYSQL_ROOT_PASSWORD: "T41Df!x2L4"
     restart: always
 redis:
-    build: ./images/redis
+    image: daocloud.io/shuc/redis
     container_name: redis 
     ports:
         - "6379:6379"
@@ -21,13 +21,13 @@ redis:
         - /data/logs/redis:/data/logs/redis
     restart: always
 memcached:
-    build: ./images/memcached
+    image: daocloud.io/shuc/memcached
     container_name: memcached 
     ports:
         - "11211:11211"
     restart: always
 mongodb:
-    build: ./images/mongodb3
+    image: daocloud.io/shuc/mongodb3
     container_name: mongodb
     ports:
         - "27017:27017"
