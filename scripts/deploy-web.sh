@@ -77,8 +77,8 @@ cp /data/www/htdocs/tsb-server/app/config/database.php.example /data/www/htdocs/
 sed -Ei "s/'host'.+?/'host' => 'db.pro.com',/g" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "s/'login'.+?/'login' => '${MYSQL_USERNAME}',/g" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "s/'password'.+?/'password' => '${MYSQL_PASSWORD}',/g" /data/www/htdocs/tsb-server/app/config/database.php
-sed -Ei "/mongo/{n;n;n;n;n;s/'login'.+?/'login' => '${MONGO_USERNAME}',/}" /data/www/htdocs/tsb-server/app/config/database.php
-sed -Ei "/mongo/{n;n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
+sed -Ei "/mongo/{n;n;n;s/'login'.+?/'login' => '${MONGO_USERNAME}',/}" /data/www/htdocs/tsb-server/app/config/database.php
+sed -Ei "/mongo/{n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "/mongo/{n;n;n;n;n;s/'database'.+?/'database' => 'admin',/}" /data/www/htdocs/tsb-server/app/config/database.php
 
 docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
