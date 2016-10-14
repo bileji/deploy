@@ -96,6 +96,6 @@ cd ${DEPLOY_ROOT} && docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web
 
 docker exec -t php sh -c "php -r \"readfile('https://getcomposer.org/installer');\" | php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer && cd /data/www/tsb-passport && composer install"
 
-chmod 77 -R /data/www/htdocs/tsb-passport/storage
+chmod 777 -R /data/www/htdocs/tsb-passport/storage
 
 echo -e "\033[32mDeploy web done!\033[0m";
