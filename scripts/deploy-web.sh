@@ -82,3 +82,5 @@ sed -Ei "/mongo/{n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /
 sed -Ei "/mongo/{n;n;n;n;n;s/'database'.+?/'database' => 'admin',/}" /data/www/htdocs/tsb-server/app/config/database.php
 
 docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
+
+# todo passport配置修改以及composer install
