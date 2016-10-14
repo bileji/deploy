@@ -66,7 +66,7 @@ MONGO_PASSWORD=${MONGO_PASSWORD//\"}
 sed -Ei "s/server_name.+?/server_name ${SERVER_NAME};/g" ${DEPLOY_ROOT/%\//}/volumes/nginx/sites/server.conf
 
 cp /data/www/htdocs/tsb-server/app/config/config.php.example /data/www/htdocs/tsb-server/app/config/config.php
-sed -Ei "s/config\['passport_url'\].+?/config\['passport_url'\] = 'http:\/\/pp.pro.com\/rest\/v1\/';/g" /data/www/htdocs/tsb-server/app/config/config.php
+sed -Ei "s/config\['passport_url'\].+?/config\['passport_url'\] = 'http:\/\/pp.pro.com:8000\/rest\/v1\/';/g" /data/www/htdocs/tsb-server/app/config/config.php
 sed -Ei "s/config\['memcache_244'\].+?/config\['memcache_244'\] = 'db.pro.com';/g" /data/www/htdocs/tsb-server/app/config/config.php
 sed -Ei "s/config\['memcache_246'\].+?/config\['memcache_246'\] = 'db.pro.com';/g" /data/www/htdocs/tsb-server/app/config/config.php
 sed -Ei "s/config\['memcache_252'\].+?/config\['memcache_252'\] = 'db.pro.com';/g" /data/www/htdocs/tsb-server/app/config/config.php
