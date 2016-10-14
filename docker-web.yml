@@ -24,9 +24,4 @@ php:
     extra_hosts:
         - "db.pro.com:127.0.0.1"
         - "pp.pro.com:127.0.0.1"
-    environment:
-        - MG_DB_UN=root
-        - MG_DB_PWD=123456
-        - MY_DB_UN=root
-        - MY_DB_PWD=123456
     restart: always

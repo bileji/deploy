@@ -49,7 +49,7 @@ rm -rf /data/www/htdocs && mkdir -p /data/www/htdocs && cd /data/www/htdocs
 git clone -b new dreamix-git:tsb-chat
 git clone -b php7 dreamix-git:tsb-passport
 git clone -b HX-release dreamix-git:tsb-web
-git clone -b cola dreamix-git:cola && git clone -b HuaXi dreamix-git:tsb-server
+git clone -b php7 dreamix-git:cola && git clone -b HuaXi dreamix-git:tsb-server
 
 # 获取mongodb and mysql username password
 MYSQL_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_USER|awk -F ":" '{print $2}'|tr -d '[ ]'`

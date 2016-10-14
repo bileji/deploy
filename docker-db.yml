@@ -7,7 +7,7 @@ mysql:
         - /data/db/mysql:/data/db/mysql
         - /data/logs/mysql:/data/logs/mysql
     environment:
-        MYSQL_USER: "xxxx"
+        MYSQL_USER: "admin"
         MYSQL_PASSWORD: "N!F3ABaFui"
         MYSQL_ROOT_PASSWORD: "T41Df!x2L4"
     restart: always
@@ -37,6 +37,6 @@ mongodb:
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
-        MONGODB_USER: "xxxx"
+        MONGODB_USER: "admin"
         MONGODB_PASS: "541R4evB"
     restart: always
