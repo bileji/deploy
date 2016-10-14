@@ -1,6 +1,6 @@
 #!/bin/bash
 
-while getopts "n:m:s:h" arg
+while getopts "s:h" arg
 do
     case $arg in
         h)
@@ -50,6 +50,7 @@ git clone -b new dreamix-git:tsb-chat
 git clone -b php7 dreamix-git:tsb-passport
 git clone -b HX-release dreamix-git:tsb-web
 git clone -b php7 dreamix-git:cola && git clone -b HuaXi dreamix-git:tsb-server
+echo -e "\033[32mClone project done!\033[0m";
 
 # 获取mongodb and mysql username password
 MYSQL_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_USER|awk -F ":" '{print $2}'|tr -d '[ ]'`
@@ -81,6 +82,16 @@ sed -Ei "/mongo/{n;n;n;s/'login'.+?/'login' => '${MONGO_USERNAME}',/}" /data/www
 sed -Ei "/mongo/{n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "/mongo/{n;n;n;n;n;s/'database'.+?/'database' => 'admin',/}" /data/www/htdocs/tsb-server/app/config/database.php
 
-docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
+echo -e "\033[32mModified server config done!\033[0m";
 
-# todo passport配置修改以及composer install
+{ \
+    echo "DB_HOST='db.pro.com'"; \
+    echo "DB_USERNAME='${MONGO_USERNAME}'"; \
+    echo "DB_PASSWORD='${MONGO_PASSWORD}'"; \
+    echo "DB_DATABASE='admin'"; \
+    echo "REDIS_HOST='db.pro.com'"; \
+} > /data/www/htdocs/tsb-passport/.env && { echo -e >&2 "\033[32mModified passport config done!\033[0m"; }
+
+cd ${DEPLOY_ROOT} && docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
+
+echo -e "\033[32mDeploy web done!\033[0m";
