@@ -30,7 +30,7 @@ if [ -z ${SERVER_NAME} ]; then
     exit 1
 fi
 
-echo -e "\033[31mPlease make sure php service extra_hosts is filled correctly.\033[0m";
+echo -e '\033[31mPlease make sure php service extra_hosts is filled correctly.\033[0m';
 
 # 初始化目录
 for DIR in "${LOG_DIRS[@]}"
@@ -38,19 +38,19 @@ do
 	LOG_PATH_NAME="${MOUNT/%\//}/logs/${DIR}"
 	rm -rf ${LOG_PATH_NAME} && mkdir -p ${LOG_PATH_NAME} && chmod -R 777 ${LOG_PATH_NAME}
 done
-echo -e "\033[32mInit dir done!\033[0m";
+echo -e '\033[32mInit dir done!\033[0m';
 
 # 拷贝密钥
-cp -r ${DEPLOY_ROOT/%\//}/volumes/ssh/* ~/.ssh > /dev/null 2>&1 && chmod 600 ~/.ssh/docker || { echo -e >&2 "\033[31mSsh key copy failed.\033[0m"; exit 1; }
+cp -r ${DEPLOY_ROOT/%\//}/volumes/ssh/* ~/.ssh > /dev/null 2>&1 && chmod 600 ~/.ssh/docker || { echo -e >&2 '\033[31mSsh key copy failed.\033[0m'; exit 1; }
 
 # 克隆项目代码
-command -v git > /dev/null 2>&1 || { echo -e >&2 "\033[31mI need git but it's not installed. aborting.\033[0m"; exit 1; }
+command -v git > /dev/null 2>&1 || { echo -e >&2 '\033[31mI need git but it is not installed. aborting.\033[0m'; exit 1; }
 rm -rf /data/www/htdocs && mkdir -p /data/www/htdocs && cd /data/www/htdocs
 git clone -b new dreamix-git:tsb-chat
 git clone -b php7 dreamix-git:tsb-passport
 git clone -b HX-release dreamix-git:tsb-web
 git clone -b php7 dreamix-git:cola && git clone -b HuaXi dreamix-git:tsb-server
-echo -e "\033[32mClone project done!\033[0m";
+echo -e '\033[32mClone project done!\033[0m';
 
 # 获取mongodb and mysql username password
 MYSQL_USERNAME=`cat ${DEPLOY_ROOT/%\//}/docker-db.yml|grep MYSQL_USER|awk -F ":" '{print $2}'|tr -d '[ ]'`
@@ -82,7 +82,7 @@ sed -Ei "/mongo/{n;n;n;s/'login'.+?/'login' => '${MONGO_USERNAME}',/}" /data/www
 sed -Ei "/mongo/{n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "/mongo/{n;n;n;n;n;s/'database'.+?/'database' => 'admin',/}" /data/www/htdocs/tsb-server/app/config/database.php
 
-echo -e "\033[32mModified server config done!\033[0m";
+echo -e '\033[32mModified server config done!\033[0m';
 
 { \
     echo "DB_HOST='db.pro.com'"; \
@@ -90,12 +90,10 @@ echo -e "\033[32mModified server config done!\033[0m";
     echo "DB_PASSWORD='${MONGO_PASSWORD}'"; \
     echo "DB_DATABASE='admin'"; \
     echo "REDIS_HOST='db.pro.com'"; \
-} > /data/www/htdocs/tsb-passport/.env && { echo -e >&2 "\033[32mModified passport config done!\033[0m"; }
+} > /data/www/htdocs/tsb-passport/.env && { echo -e >&2 '\033[32mModified passport config done!\033[0m'; }
 
 cd ${DEPLOY_ROOT} && docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
 
-docker exec -t php sh -c "php -r \"readfile('https://getcomposer.org/installer');\" | php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer && cd /data/www/tsb-passport && composer install"
+docker exec -t php sh -c "php -r \"readfile('https://getcomposer.org/installer');\" | php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer && cd /data/www/tsb-passport && mkdir -p /data/www/tsb-passport/bootstrap/cache && chmod 777 -R bootstrap storage && composer install";
 
-chmod 777 -R /data/www/htdocs/tsb-passport/storage
-
-echo -e "\033[32mDeploy web done!\033[0m";
+echo -e '\033[32mDeploy web done!\033[0m';
