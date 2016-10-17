@@ -94,6 +94,6 @@ echo -e '\033[32mModified server config done!\033[0m';
 
 cd ${DEPLOY_ROOT} && docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
 
-docker exec -t php sh -c "php -r \"readfile('https://getcomposer.org/installer');\" | php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer && cd /data/www/tsb-passport && mkdir -p /data/www/tsb-passport/bootstrap/cache && chmod 777 -R bootstrap storage && composer install";
+docker exec -t php sh -c "php -r \"readfile('https://getcomposer.org/installer');\" | php && mv composer.phar /usr/local/bin/composer && chmod a+x /usr/local/bin/composer && cd /data/www/tsb-passport && mkdir -p /data/www/tsb-passport/bootstrap/cache && chmod -R 777 bootstrap storage && composer install";
 
 echo -e '\033[32mDeploy web done!\033[0m';
