@@ -87,13 +87,13 @@ sed -Ei "/mongo/{n;n;n;n;n;n;s/'database'.+?/'database' => '${MONGO_DATABASE}',/
 cat /data/www/htdocs/tsb-server/app/config/database.php && echo -e '\033[32m\r\nModified server config done!\033[0m';
 
 sed -Ei "/'mongodb' => array(/{n;n;s/'host'.+?/'host' => 'db.pro.com',/}" /data/www/htdocs/tsb-passport/app/config/database.php
-sed -Ei "/'mongodb' => array(/{n;n;n;n;s/'username'.+?/'username' => '${MONGO_USERNAME}',/}" /data/www/htdocs/tsb-server/app/config/database.php
-sed -Ei "/'mongodb' => array(/{n;n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
-sed -Ei "/'mongodb' => array(/{n;n;n;n;n;n;s/'database'.+?/'database' => '${MONGO_DATABASE}',/}" /data/www/htdocs/tsb-server/app/config/database.php
+sed -Ei "/'mongodb' => array(/{n;n;n;n;s/'username'.+?/'username' => '${MONGO_USERNAME}',/}" /data/www/htdocs/tsb-passport/app/config/database.php
+sed -Ei "/'mongodb' => array(/{n;n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-passport/app/config/database.php
+sed -Ei "/'mongodb' => array(/{n;n;n;n;n;n;s/'database'.+?/'database' => '${MONGO_DATABASE}',/}" /data/www/htdocs/tsb-passport/app/config/database.php
 
-sed -Ei "/'redis' => array(/{n;n;n;n;n;s/'host'.+?/'host' => 'db.pro.com',/}" /data/www/htdocs/tsb-server/app/config/database.php
+sed -Ei "/'redis' => array(/{n;n;n;n;n;s/'host'.+?/'host' => 'db.pro.com',/}" /data/www/htdocs/tsb-passport/app/config/database.php
 
-cat /data/www/htdocs/tsb-server/app/config/database.php && echo -e >&2 '\033[32m\r\nModified passport config done!\033[0m';
+cat /data/www/htdocs/tsb-passport/app/config/database.php && echo -e >&2 '\033[32m\r\nModified passport config done!\033[0m';
 
 cd ${DEPLOY_ROOT} && docker-compose -f ${DEPLOY_ROOT/%\//}/docker-web.yml -p web up -d
 
