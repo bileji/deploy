@@ -7,13 +7,13 @@ mysql:
         - /data/db/mysql:/data/db/mysql
         - /data/logs/mysql:/data/logs/mysql
     environment:
-        MYSQL_USER: "admin"
+        MYSQL_USER: "huaxi"
         MYSQL_PASSWORD: "N!F3ABaFui"
         MYSQL_ROOT_PASSWORD: "T41Df!x2L4"
     restart: always
 redis:
     image: daocloud.io/shuc/redis
-    container_name: redis 
+    container_name: redis
     ports:
         - "6379:6379"
     volumes: 
@@ -22,7 +22,7 @@ redis:
     restart: always
 memcached:
     image: daocloud.io/shuc/memcached
-    container_name: memcached 
+    container_name: memcached
     ports:
         - "11211:11211"
     restart: always
@@ -37,6 +37,7 @@ mongodb:
     environment:
         AUTH: "yes"
         JOURNALING: "yes"
-        MONGODB_USER: "admin"
+        MONGODB_DATABASE: "huaxi"
+        MONGODB_USER: "huaxi"
         MONGODB_PASS: "541R4evB"
     restart: always
