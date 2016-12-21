@@ -84,7 +84,7 @@ sed -Ei "/mongo/{n;n;n;s/'login'.+?/'login' => '${MONGO_USERNAME}',/}" /data/www
 sed -Ei "/mongo/{n;n;n;n;s/'password'.+?/'password' => '${MONGO_PASSWORD}',/}" /data/www/htdocs/tsb-server/app/config/database.php
 sed -Ei "/mongo/{n;n;n;n;n;s/'database'.+?/'database' => '${MONGO_DATABASE}',/}" /data/www/htdocs/tsb-server/app/config/database.php
 
-echo -e '\033[32mModified server config done!\033[0m';
+cat /data/www/htdocs/tsb-server/app/config/database.php && echo -e '\033[32m\r\nModified server config done!\033[0m';
 
 { \
     echo "DB_HOST='db.pro.com'"; \
