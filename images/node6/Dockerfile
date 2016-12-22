@@ -12,4 +12,4 @@ RUN easy_install supervisor
 
 EXPOSE 8010
 
-CMD ["/usr/bin/supervisor"]
+CMD ["/usr/bin/supervisord"]
