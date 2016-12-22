@@ -10,4 +10,4 @@ RUN mkdir -p /data/www && chmod -R 777 /data/www
 
 EXPOSE 8010
 
-CMD ["/usr/sbin/init"]
+CMD ["/bin/bash"]
