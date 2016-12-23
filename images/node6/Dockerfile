@@ -12,4 +12,5 @@ RUN easy_install supervisor && echo_supervisord_conf > /etc/supervisord.conf
 
 EXPOSE 8010
 
-CMD ["/usr/bin/supervisord -c /etc/supervisord.conf"]
+#CMD ["/usr/bin/supervisord -c /etc/supervisord.conf"]
+CMD ["/bin/bash"]
