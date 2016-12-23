@@ -8,7 +8,7 @@ RUN yum install -y nodejs python-setuptools
 RUN npm install -g grunt pm2
 RUN mkdir -p /data/www && chmod -R 777 /data/www
 
-RUN easy_install supervisor
+RUN easy_install supervisor && echo_supervisord_conf > /etc/supervisord.conf
 
 EXPOSE 8010
 
