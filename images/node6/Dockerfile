@@ -9,7 +9,8 @@ RUN npm install -g grunt pm2
 RUN mkdir -p /data/www && chmod -R 777 /data/www
 
 RUN easy_install supervisor && echo_supervisord_conf > /etc/supervisord.conf
+RUN SED -E -i 's/^nodaemon.+?/nodaemon=true/' /etc/supervisord.conf
 
 EXPOSE 8010
 
-CMD ["/usr/bin/supervisord -c /etc/supervisord.conf -n"]
+CMD ["/usr/bin/supervisord"]
