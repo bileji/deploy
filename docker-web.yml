@@ -3,6 +3,7 @@ nginx:
     container_name: nginx 
     links:
         - php
+        - node
     ports:
         - "80:80"
         - "443:443"
@@ -18,10 +19,25 @@ php:
     container_name: php
     ports:
         - "9000:9000"
+    links:
+        - node
     volumes: 
         - /data/www/htdocs:/data/www
         - /data/logs/php:/data/logs/php
     extra_hosts:
         - "db.pro.com:127.0.0.1"
         - "pp.pro.com:127.0.0.1"
+    restart: always
+node:
+    image: daocloud.io/shuc/node6
+    container_name: node
+    ports:
+        - "3014:3014"
+        - "3050:3050"
+        - "3051:3051"
+        - "127.0.0.1:8010:8010"
+    volumes:
+        - /data/www/htdocs:/data/www
+    extra_hosts:
+        - "db.pro.com:127.0.0.1"
     restart: always
