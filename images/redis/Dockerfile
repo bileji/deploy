@@ -12,7 +12,7 @@ RUN sed -E -i "s/^timeout 0/timeout 300/" /etc/redis.conf
 RUN sed -E -i "s/^bind 127.0.0.1/bind 0.0.0.0/" /etc/redis.conf
 RUN sed -E -i "s/^dir \/var\/lib\/redis\//dir \/data\/db\/redis\//" /etc/redis.conf
 RUN sed -E -i "s/^logfile \/var\/log\/redis\/redis.log/logfile \/data\/logs\/redis\/redis.log/" /etc/redis.conf
-RUN sed -E -i "s/^protected-mode\ .+?$/protected-mode\ no/" etc/redis.conf
+RUN sed -E -i "s/^protected-mode\ .+?$/protected-mode\ no/" /etc/redis.conf
 RUN sed -E -i "s/^# rename-command CONFIG \"\"/rename-command CONFIG \"GIFNOC\"/" /etc/redis.conf
 RUN sed -E -i "/^rename-command CONFIG \"GIFNOC\"/a\rename-command FLUSHALL \"LLAHSULF\"" /etc/redis.conf
 RUN sed -E -i "/^rename-command CONFIG \"GIFNOC\"/a\rename-command EVAL \"EVAL\"" /etc/redis.conf
