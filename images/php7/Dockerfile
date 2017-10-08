@@ -6,6 +6,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.
 RUN rpm -Uvh https://mirror.webtatic.com/yum/el6/latest.rpm
 RUN yum install -y php70w libmemcached10
 RUN yum install -y php70w-fpm php70w-mbstring php70w-gd php70w-dom php70w-xml php70w-pdo php70w-mysqlnd php70w-mcrypt php70w-process php70w-pear php70w-cli php70w-devel php70w-opcache php70w-soap
+RUN yum update -y php
 RUN sed -E -i "s/^error_log = \/var\/log\/php-fpm\/error.log/error_log = \/data\/logs\/php\/fpm-error.log/" /etc/php-fpm.conf
 RUN sed -E -i "s/^listen =.+?$/listen = 0.0.0.0:9000/" /etc/php-fpm.d/www.conf 
 RUN sed -E -i "s/^listen.allowed_clients =.+?$/; listen.allowed_clients = 127\.0\.0\.1/" /etc/php-fpm.d/www.conf
