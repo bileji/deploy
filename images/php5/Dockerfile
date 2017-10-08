@@ -8,6 +8,7 @@ RUN rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.
 
 #php5
 RUN yum install -y libmcrypt php56w php56w-fpm php56w-mbstring php56w-gd php56w-dom php56w-pdo php56w-mysqlnd php56w-mcrypt php56w-process php56w-pear php56w-cli php56w-xml php56w-curl php56w-pecl-memcached php56w-devel php56w-pecl-redis php56w-soap
+RUN yum update -y php
 
 RUN sed -E -i "s/^error_log\ = \/var\/log\/php-fpm\/error.log/error_log = \/data\/logs\/php\/fpm-error.log/" /etc/php-fpm.conf
 RUN sed -E -i "s/^listen\ =.+?$/listen\ =\ 0.0.0.0:9000/" /etc/php-fpm.d/www.conf 
