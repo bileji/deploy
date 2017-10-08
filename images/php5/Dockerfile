@@ -18,6 +18,7 @@ RUN { \
     echo "catch_workers_output = yes"; \
 } >> /etc/php-fpm.d/www.conf
 RUN sed -E -i "s/^post_max_size\ =.+?$/post_max_size\ =\ 100M/" /etc/php.ini
+RUN sed -E -i "s/^expose_php\ =.+?$/expose_php\ =\ Off/" /etc/php.ini
 RUN sed -E -i "s/^upload_max_filesize\ =.+?$/upload_max_filesize\ =\ 100M/" /etc/php.ini
 RUN sed -E -i "s/^display_errors\ .+?$/display_errors\ =\ On/" /etc/php.ini
 RUN sed -E -i "s/^error_reporting\ .+?$/error_reporting\ =\ E_ALL \& \~E_DEPRECATED \& \~E_STRICT \& \~E_NOTICE/" /etc/php.ini
